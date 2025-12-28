@@ -1,0 +1,652 @@
+\documentclass[14pt]{extreport}
+\usepackage{graphicx}
+\usepackage{gost}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\PassOptionsToPackage{russian,english}{babel}
+\usepackage[english,russian]{babel}
+\usepackage{tempora}
+\usepackage{hyperref}
+\linespread{1.3}
+\setlength{\parindent}{1.25cm}
+\usepackage{hyperref}
+
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{longtable}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead{} 
+\fancyfoot[C]{\thepage} 
+
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{amsthm}
+
+\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1}
+\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, #1}
+\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1}
+
+\newcommand{\defeq}[0]{\stackrel{\text{def}}{=}}
+
+\begin{document}
+\thispagestyle{empty}
+	\title{Математический анализ. Экзамен.}
+	\maketitle
+
+	\newpage
+	\tableofcontents
+	
+	\chapter{Способы задания множества. Порождающая процедура. Характеристическое свойство.}
+
+	\section{Способы задания множества}
+
+	\begin{enumerate}
+		\item Перечисление $\lbrace a, b, c ... \rbrace$
+		\item Характеристическое свойство $M \stackrel{\text{def}}{=} \lbrace x : P(x) \rbrace$, где $P(x)$ -- предикат
+		\item Порождающая процедура $M := \lbrace y : y = f(x), x \in E \rbrace$, где $f$ -- функция от $x$
+	\end{enumerate}
+	\section{Описание способов задания множества}
+
+	\begin{defbox}
+		\textbf{Характеристическое свойство} -- способ задания множества, при котором каждый его элемент обладает свойством $P(x)$
+
+		$$
+		M \defeq \lbrace x : P(x) \rbrace
+		$$
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Порождающая процедура} -- способ задания множества, при котором каждый его элемент является результатом выполнения функции $f$ от переменной $x$ из некоторого множества $E$.
+
+		$$
+		M := \lbrace y : y = f(x), x \in E \rbrace
+		$$
+	\end{defbox}
+
+	\chapter{Отображения. Инъекция, сюръекция, биекция. Прямые произведения множеств}
+
+	\section{Отображения}
+
+	\begin{defbox}
+		Отображение -- способ сопоставления элементов между множествами.
+	\end{defbox}
+
+	\noindent Отображения бывают трех видов:
+	\begin{enumerate}
+		\item Инъекция
+		\item Сюръекция
+		\item Биекция
+	\end{enumerate}
+
+	\begin{defbox}
+		\textbf{Инъекция} -- такое отображение $f(A) \to B$, при котором любой элемент $B$ имеет \textbf{не более одного} прообраза в множестве $A$.
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Сюръекция} -- такое отображение $f(A) \to B$, при котором любой элемент $B$ имеет \textbf{не менее одного} прообраза в множестве $A$.
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Биекция} -- это отображение, являющееся и сюръекцией, и инъекцией одновременно. То есть взаимооднозначное соответствие.
+	\end{defbox}
+
+	\section{Прямые произведения множеств}
+
+	\begin{defbox}
+		\textbf{Прямое (декартово) произведение множеств} $A$ и $B$ -- все такие пары чисел $(a, b)$, где $a \in A$, $b \in B$.
+
+		$$
+		A \times B \defeq \lbrace (a, b) : a \in A, b \in B \rbrace
+		$$
+	\end{defbox}
+
+	\newpage
+	\chapter{Комплексные числа. Действия с комплексными числами. Тригонометрическая и показательная формы записи комплексных чисел}
+
+	\section{Комплексные числа}
+
+	Рассмотрим такое число $i$, что $i^2 = -1$. Тогда можно представить следующий вид числа: $z = a + bi$, где $a, b \in \mathbb{R}$
+
+	\begin{defbox}
+		\textbf{Комплексное число} -- такая пара чисел $(a, b)$, что $a, b \in \mathbb{R}$
+	\end{defbox}
+
+	\section{Действия с комплексными числами}
+
+	\begin{enumerate}
+		\item Сложение поэлементно $z_1 + z_2 = (a_1, b_1) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2)$
+		\item Умножение $z_1z_2 = (a_1, b_1)(a_2, b_2) = (a_1a_2-b_1b_2, a_1b_2+a_2b_1)$
+		\item Равенство $z_1 = z_2 \defeq (a_1 = a_2) \land (b_1 = b_2)$
+		\item Обратное
+			$$
+			\exists (x, y) : (x, y)(a_2, b_2) = (a_1, b_1) \Leftrightarrow 
+			\begin{cases}
+				xa_2 - yb_2 = a_1\\
+				xb_2 + ya_2 = b_1
+			\end{cases}
+			\Leftrightarrow
+			\begin{cases}
+				x = \frac{a_1a_2+b_1b_2}{a^2_2+b^2_2}\\
+				y = \frac{b_1a_2-a_1b_2}{a^2_2+b^2_2}
+			\end{cases}
+			$$
+        \item Модуль числа $|z|=\sqrt{a^2+b^2}$
+        \item  Деление $\frac{z_1}{z_2}=\frac{z_1\widetilde{z_2}}{|z_2|^2}$
+        \item Аргумент числа $ \phi =\arg(z)=\arctan(\frac{b}{a})$
+    \end{enumerate}
+    \section{Тригонометрическая и показательная форма записей}
+    \begin{enumerate}
+        \item Тригонометрическая запись $z=r(cos(\phi)+ i sin(\phi))$
+        \item Показательная форма $z=e^{i\phi}$
+	\end{enumerate}
+
+    \newpage
+
+    \chapter{Возведение комплексного числа в степень. Извлечение корня из комплексного числа. Комплексный логарифм. Функции комплексного аргумента.}
+    
+	\section{Возведение комплексного числа в степень и извлечение корня.}
+    
+	\begin{enumerate}
+        \item Комплексное число $z=r(\cos(\phi)+i\sin(\phi))$ Возводиться в n-ую степень согласно формуле Муавра $z^n=r^n(\cos(n\phi)+i\sin(n\phi))$
+        \item Извлчения корня $\sqrt[n]{z}=z^\frac{1}{n}=r^\frac{1}{n}(\cos(\frac{\phi+2\pi k}{n})+i\sin(\frac{\phi+2\pi k}{n})),k=0, 1 ....., n-1$
+    \end{enumerate}
+    
+	\section{Комплексный логарифм}
+    
+    Решим уравнение $e^{\omega}=c$, $c \in \mathbb{C}$, $\omega=a+ib \Leftrightarrow$
+	$$
+	\Leftrightarrow Ln(c)=\ln(e^a\cdot e^{ib}) = \ln(|z|)+\ln(e^{iarg(\omega)})= \ln(|z|)+i(\phi+2\pi k)
+	$$
+
+    Тогда $Ln(z)=\ln(|z|)+i(\phi+2\pi k)$
+
+    Важно заметить, что комплексный логарифм является многозначной функцией.
+
+    \section{Функции комплексного аргумента}
+
+    \chapter{Аксиомы вещественных чисел. Простейшие следствия из аксиом. Аксиома полноты.}
+    
+	\section{Аксиомы вещественных чисел}
+
+	\begin{defbox}
+		\textbf{Множество действительных чисел $\mathbb{R}$} -- это множество, на котором заданы операции сложения, умножения и сравнения, удовлетворяющие следующим аксиомам.
+	\end{defbox}
+
+	\begin{enumerate}
+		\item Группа I
+		\begin{enumerate}
+			\item $a+b=b+a$
+			\item $a+(b+c)=(a+b)+c$
+				\item $\exists 0 : \forall a \in \mathbb{R} \Rightarrow a + 0 = a$
+			\item $\forall a \exists \widetilde a : a + \widetilde{a} = 0$
+		\end{enumerate}
+		\item Группа II 
+		\begin{enumerate}
+			\item $ab = ba$
+			\item $(ab)c=a(bc)$
+			\item $\exists 1: \forall a \in \mathbb{R} \setminus \lbrace0\rbrace \Rightarrow 1 \cdot a = a$
+			\item $\forall a \in \mathbb{R} \exists a ^ {-1} : aa^{-1}=1$
+		\end{enumerate}
+		\item Группа III
+		\begin{enumerate}
+			\item $a(b+c)=ab+ac$ -- дистрибутивность
+		\end{enumerate}
+		\item Группа IV
+		\begin{enumerate}
+			\item $\forall a, b \in \mathbb{R} : (a \le b) \vee (b \le a)$
+		\end{enumerate}
+		\item Группа V
+		\begin{enumerate}
+			\item $a \le a$, $a \ge a$
+			\item $$
+				\begin{cases}
+					a \le b\\
+					b \le c
+				\end{cases}
+				\Rightarrow
+				a \le c
+				$$
+			\item $(a \le b) \vee (b \le a)$
+			\item $0 \le 1$
+			\item $$
+				\begin{cases}
+					a \le b\\
+					b \le a
+				\end{cases}
+				\Rightarrow
+				a = b
+				$$
+		\end{enumerate}
+		\item Группа VI
+		\begin{enumerate}
+			\item $a \le b \Rightarrow \forall c : a + c \le b + c$
+			\item $$
+				\begin{cases}
+					a \le b\\
+					c \le d
+				\end{cases}
+				\Rightarrow
+				a + c = b + d
+				$$
+			\item $a \le b$, $c > 0 \Rightarrow ac \le bc$
+			\item $$
+				\begin{cases}
+					0 \le a \le b\\
+					0 \le c \le d
+				\end{cases}
+				\Rightarrow
+				0 \le a  c \le b  d
+				$$
+		\end{enumerate}
+		\item Аксиома полноты 
+		$$
+		((\forall x \in X) \wedge (\forall y \in Y) : x \le y) \Rightarrow 
+		$$
+		$$
+		\Rightarrow (\exists c \in \mathbb{R} : (\forall x \in X) \wedge (\forall y \in Y) : x \le c \le y)
+		$$
+	\end{enumerate}
+
+    \section{Простейшие следствия из аксиом}
+
+    \begin{enumerate}
+        \item \textbf{Единственность нуля:} Если $a + x = a$ для некоторого $a \in \mathbb{R}$, то $x = 0$.
+        \item \textbf{Единственность противоположного:} Для любого $a \in \mathbb{R}$ существует единственный $-a$ такой, что $a + (-a) = 0$.
+        \item \textbf{Расположение чисел относительно друг друга:} Для любых $x, y \in \mathbb{R}$ верно ровно одно из трех утверждений: $x<y$, $x>y$, $x=y$
+    \end{enumerate}
+
+    \section{Аксиома полноты}
+
+    Аксиома полноты говорит о том, что для любых двух различных чисел из множества $\mathbb{R}$ найдется третье, находящееся между ними.
+
+    \chapter{Точная верхняя и точная нижняя грани множества. Единственность минимального и максимального элемента ограниченного непустого множества. Существование точной верхней грани ограниченного непустого множества. Принцип вложенных отрезков.}
+
+    \section{Супремум и инфимум множества}
+
+	\begin{defbox}
+		\textbf{Точная верхняя грань (супремум)} множества $M$ -- такое число $s = \sup M$, которое удовлетворяет условиям:
+		\begin{enumerate}
+			\item $\forall x \in M \Rightarrow x \le s$
+			\item $\forall \varepsilon > 0 \exists x' \in M : x' > s - \varepsilon$
+		\end{enumerate}
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Точная нижняя грань (инфимум)} множества $M$ -- такое число $i = \inf M$, которое удовлетворяет условиям:
+		\begin{enumerate}
+			\item $\forall x \in M \Rightarrow x \ge s$
+			\item $\forall \varepsilon > 0 \exists x' \in M : x' < i + \varepsilon$
+		\end{enumerate}
+	\end{defbox}
+	
+	\newpage
+	\section{Единственность минимального и максимального элемента ограниченного непустого множества}
+	
+	\begin{thbox}
+		Любое ограниченное сверху подмножество множества $\mathbb{R}$ имеет единственную точную верхнюю грань.
+	\end{thbox}
+
+	\begin{prbox}
+		{[Существование]}
+
+		Рассмотрим два множества: $X$ -- исходное множество, $Y$ -- множество всех верхних граней множества $X$. $X$ ограничено сверху числом $y$, если $\forall x \in X \Rightarrow x \le y$. По аксиоме полноты $\exists c : \forall x \in X, \forall y \in Y \Rightarrow x \le c \le y$. Проверим, что $c = \sup X$. $\forall x \in X \Rightarrow x \le c$.
+		
+		Пусть $\varepsilon > 0$, рассмотрим $c - \varepsilon$. Если $c$ -- неточная верхняя грань, то не найдется ни одного $x' \in X$ такого, что $x'>c-\varepsilon$, а значит $\forall x \in X \Rightarrow x \le c - \varepsilon$, а значит $c - \varepsilon$ можно выбрать как новую верхнюю грань.
+
+		\vspace{20pt}
+		{[Единственность]}
+
+		Пусть есть $c_1$ и $c_2$, $c_2 > c_1$. Возьмем $\varepsilon = \frac{c_2-c_1}{2}$. $\exists x' : x' > c_2 - \frac{c_2-c_1}{2} > c_1$. Тогда $c_1$ -- не граница $X$, $c_1 \notin Y$
+	\end{prbox}
+
+	\begin{defbox}
+		\textbf{Минимальный элемент множества $M$} -- такой элемент $a \in M$, что выполняется $\forall m \in M \Rightarrow a \le m$
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Максимальный элемент множества $M$} -- такой элемент $a \in M$, что выполняется $\forall m \in M \Rightarrow a \ge m$
+	\end{defbox}
+
+	\newpage
+	\begin{thbox}
+		Если в множестве $A$ существует минимальный (максимальный) элемент, то он единственный.
+	\end{thbox}
+
+	\begin{prbox}
+		Пусть $m_1$, $m_2$ -- два минимальный элемента множества $A$. 
+		\begin{enumerate}
+			\item Так как $m_1$ -- минимальный элемент множества $A$, то выполняется $\forall x \in A \Rightarrow m_1 \le x$, в том числе это выполнено и для $x=m_2$, ведь $m_2 \in A$. Значит $m_1 \le m_2$.
+			\item Так как $m_2$ -- минимальный элемент множества $A$, то выполняется $\forall x \in A \Rightarrow m_2 \le x$, в том числе это выполнено и для $x=m_1$, ведь $m_1 \in A$. Значит $m_2 \le m_1$.
+			\item $$
+				\begin{cases}
+					m_1 \le m_2\\
+					m_2 \le m_1
+				\end{cases}
+				\Leftrightarrow
+				m_1=m_2
+				$$
+		\end{enumerate}
+	\end{prbox}
+
+	\section{Принцип вложенных отрезков}
+
+	\begin{defbox}
+		\textbf{Система вложенных отрезков} -- это последовательность числовых отрезков, где каждый последующий отрезок содержится в предыдущем.
+	\end{defbox}
+
+	\begin{thbox}
+	Пусть существует такая последовательность отрезков $[a_1,b_1]$, $[a_2,b_2]$, $\ldots$, $[a_n, b_n] \subset [a_{n+1},b_{n+1}]$, таких, что $\lim\limits_{x \to \infty} (b_n-a_n) =0$. Тогда существует единственная точка $c$, принадлежащая всем отрезкам системы, причем $\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} a_b = c$.
+    \end{thbox}
+
+	\newpage
+	\begin{prbox}
+		{[Существование]}
+
+		Пусть $X = \lbrace a_i\rbrace^\infty_{i=1}$, $Y = \lbrace b_i\rbrace^\infty_{i=1}$. $X$ и $Y$ непустые, $\forall i, j : a_i < b_j$. Пусть $i<j$. Тогда $a_i\le a_j<b_i$, $a_j < b_j < b_i$. $a_i < b_j$, $a_j < b_i$.
+
+		По аксиоме $\exists c : \forall k \Rightarrow c \in [a_k; b_k]$
+		
+		\vspace{20pt}
+		{[Единственность]}
+
+		Пусть имеется другая точка $c'$, которая, как и $c$, принадлежит каждому отрезку системы. Тогда $\forall n \Rightarrow |c'- c| \le b_n-a_n$, но если $c$ и $c'$ не совпадают, то расстояние между ними ненулевое, а значит $\lim\limits_{n \to \infty} (b_n-a_n) \ne 0$, противоречие условию.
+
+	\end{prbox}
+
+	\chapter{Индуктивное множество. Множество натуральных чисел. Метод математической индукции. Существование наименьшего элемента в непустом подмножестве множества натуральных чисел. Принцип Архимеда.}
+
+	\section{Индуктивное множество, множество натуральных чисел}
+
+	\begin{defbox}
+		\textbf{Индуктивное множество $X$} -- множество, удовлетворяющее следующим условиям:
+		\begin{enumerate}
+			\item $1 \in X$
+			\item $x \in X \Rightarrow x + 1 \in X$
+		\end{enumerate}
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Множество натуральных чисел $\mathbb{N}$} -- наименьшее индуктивное множество.
+		$$
+		\mathbb{N} = \bigcap^\infty_{i=1}X_i
+		$$
+		где $X_i$ -- индуктивное множество
+	\end{defbox}
+    
+	\section{Метод математической индукции}
+
+	\begin{defbox}
+		\textbf{Метод математической индукции} гласит, что если $A(n)$ верно, и из этого следует, что $A(n+1)$ тоже верно, а также верно $A(1)$, то $A(x)$ верно на $\mathbb{N}$.
+	\end{defbox}
+
+	\section{Существование наименьшего элемента в непустом подмножестве множества натуральных чисел}
+
+	\begin{thbox}
+		Любое ограниченное снизу непустое подмножество $X$ множества $\mathbb{N}$ имеет минимальный элемент.
+	\end{thbox}
+
+	\begin{prbox}
+		{[Случай 1]}
+
+		Если $1 \in X$, то $X$ автоматически имеет наименьший элемент, поскольку $1 = \min \mathbb{N}$
+		
+		\vspace{20pt}
+		{[Случай 2]}
+		
+		Пусть $1 \notin X$. Тогда рассмотрим такое множество $B$, которое состоит из всех элементов множества $\mathbb{N}$, которые меньше элементов $A$:
+		$$
+		B = \lbrace n \in \mathbb{N} : \forall k \le n \Rightarrow k \notin A \rbrace
+		$$
+		Докажем по индукции, что если $A$ не имеет минимального элемента, то $B = \mathbb{N}$, а это противоречие с непустым $A$.
+
+		\textbf{База индукции:} $1 \in B$
+
+		\textbf{Индукционное предположение:} $n \in B$
+
+		\textbf{Индукционный переход:} $n+1 \in B$
+
+		Если бы $n+1\in A$, то $\min A = n+1$ (поскольку мы взяли все такие элементы $n \in \mathbb{N}$, для которых выполняется $\forall k \le n \Rightarrow k \notin A$, то есть все те числа, до которых нет чисел в $A$), но мы предположили, что минимального элемента нет. Поэтому $\forall n \in \mathbb{N} \Rightarrow n \in B \Rightarrow A = \emptyset$ 
+
+	\end{prbox}
+
+	\section{Принцип Архимеда}
+
+	\begin{thbox}
+		Пусть задано $h>0$. $\forall x \exists n : (n-1)h\le x< nh$
+	\end{thbox}
+
+	\begin{prbox}
+		Рассмотрим $\frac{x}{h}$. Найдется $n\in\mathbb{N}$ такое, что $n>\frac{x}{h}$, поскольку $\mathbb{N}$ неограничено сверху, найдем минимальный такой элемент.
+
+		$$
+		n-1 \le \frac{x}{h} < n
+		$$
+		$$
+		(n-1)h \le x < nh
+		$$
+	\end{prbox}
+
+	\chapter{Плотность множества рациональных чисел. Существование иррациональных чисел. Иррациональность $\sqrt{2}$}
+	\begin{defbox}
+		Множество $A$ называется \textbf{всюду плотным} на числовой прямой $\mathbb{R}$, если между любыми двумя числами из $\mathbb{R}$ найдется число из $A$.
+	\end{defbox}
+
+	\section{Плотность множества рациональных чисел}
+
+	\begin{thbox}
+		Множество рациональных чисел $\mathbb{Q}$ всяду плотно на множестве действительных чисел $\mathbb{R}$.
+	\end{thbox}
+	
+	\begin{prbox}
+		Возьмем два числа $a, b \in \mathbb{R}$. Пусть $a > b$. Воспользуемся принципом Архимеда и получим, что для любого положительного числа $a-b$ найдется натуральное $n$ такое, что $\frac{1}{n} < a - b$.
+
+		Рассмотрим числа вида $\frac{m}{n}$. Расстояние между соседними такими числами равно $\frac{1}{n}$, что меньше интервала $(a, b)$, а значит хотя бы одно такое число войдет в этот интервал.
+	\end{prbox}
+
+	\section{Существование иррациональных чисел}
+
+	Первое число, иррациональность которого была доказана, -- $\sqrt 2$. Существование такого числа геометрически очевидно: это диагональ единичного квадрата. Однако можно доказать, что такое число невозможно представить в виде соотношения целых чисел.
+
+	\newpage
+	\section{Иррациональность $\sqrt 2$}
+
+	\begin{thbox}
+		$\sqrt 2$ -- иррациональное число, то есть непредставимое в виде $\frac{m}{n}$, где $m, n \in \mathbb{Z}$, а также $\frac{m}{n}$ -- несократимая дробь.
+	\end{thbox}
+
+	\begin{prbox}
+		Пойдем от обратного. Пусть $\sqrt{2} = \frac{m}{n}$ 
+		$$
+		\sqrt{2} = \frac{m}{n} \Leftrightarrow 2 = \frac{m^2}{n^2} \Leftrightarrow m^2 = 2n^2
+		$$
+		Но тогда $m^2 \equiv 0 \pmod 2 \Leftrightarrow m \equiv 0 \pmod 2 \Leftrightarrow m = 2k$. $4k^2=2n^2$. Но отсюда видно, что $m$ и $n$ имеют общий делитель, что противоречит изначальному условию.
+	\end{prbox}
+
+	\chapter{Последовательности. Монотонность. Ограниченность. Рекуррентные последовательности}
+
+	\section{Последовательности}
+
+	\begin{defbox}
+		\textbf{Последовательность} -- это упорядоченный набор из элементов некоторого множества $A$.
+		$$
+		\lbrace a_n\rbrace \defeq \lbrace a_i : \forall i \Rightarrow a_i \in A \rbrace
+		$$
+	\end{defbox}
+
+	\noindent Способы задания последовательности:
+	\begin{enumerate}
+		\item Формула $n$-го члена $a_n = f(n)$
+		\item Рекуррентный $a_{n+1} = f(a_n)$
+		\item Описание $x_n$ - $n$-я цифра десятичной записи числа $\pi$
+	\end{enumerate}
+
+	\section{Монотонность}
+	\begin{defbox}
+		Последовательность $\lbrace x_n\rbrace$ называется \textbf{строго возрастающей}, если $\forall n \Rightarrow x_{n+1}>x_n$
+	\end{defbox}
+
+	\begin{defbox}
+		Последовательность $\lbrace x_n\rbrace$ называется \textbf{неубывающей (нестрого возрастающей)}, если $\forall n \Rightarrow x_{n+1}\ge x_n$
+	\end{defbox}
+
+	\begin{defbox}
+		Последовательность $\lbrace x_n\rbrace$ называется \textbf{строго убывающей}, если $\forall n \Rightarrow x_{n+1}<x_n$
+	\end{defbox}
+
+	\begin{defbox}
+		Последовательность $\lbrace x_n\rbrace$ называется \textbf{невозрастающей (нестрого убывающей)}, если $\forall n \Rightarrow x_{n+1}\le x_n$
+	\end{defbox}
+
+	\section{Ограниченность}
+
+	\begin{defbox}
+		Последовательность называется \textbf{ограниченной}, если $\exists M>0:\forall x_n:|x_n|<M$
+	\end{defbox}
+
+	\noindent Примеры ограниченных последовательностей:
+	\begin{enumerate}
+		\item $x_n = (-1)^n$
+		\item $x_n = \sin n$
+		\item $x_n = \frac{1}{n^2}$
+	\end{enumerate}
+
+	\noindent Примеры неограниченных последовательностей: 
+	\begin{enumerate}
+		\item $x_n = n^2$
+		\item $x_n = (-1)^n n^2$
+	\end{enumerate}
+
+	\chapter{Предел последовательности. Арифметические действия с пределами. Предельный переход в неравенствах. Принцип сжатой последовательности.}
+	\section{Предел последовательности}
+
+	\begin{defbox}
+		Число $a$ называется пределом последовательности $\lbrace a_n\rbrace$, если $\forall \varepsilon > 0$ найдется номер, начиная с которого все члены последовательности входят в $\varepsilon$-окрестность $a$.
+		$$
+		\lim_{n \to \infty}{a_n} = a \Leftrightarrow \forall \varepsilon > 0 \exists N \in \mathbb{N} : \forall n > N \Rightarrow |a_n - a| < \varepsilon
+		$$
+	\end{defbox}
+
+	\section{Арифметические действия с пределами}
+
+	\begin{thbox}
+		Если последовательности $\lbrace a_n\rbrace$ и $\lbrace b_n\rbrace$ имеют конечные пределы, то сумма этих последовательностей также имеет конечный предел.
+		$$
+		\begin{cases}
+			\lim\limits_{n \to \infty}{a_n} = a\\
+			\lim\limits_{n \to \infty}{b_n} = b
+		\end{cases}
+		\Leftrightarrow
+		\lim\limits_{n \to \infty}{(a_n+b_n)} = a + b
+		$$
+	\end{thbox}
+	\begin{prbox}
+		Пусть задано $\varepsilon > 0$. Докажем по определению, что $\lim\limits_{n \to \infty}{(a_n+b_n)} = a + b$.
+		
+		$|(a_n-a)+(b_n-b)|<\varepsilon$
+
+		$|(a_n-a)+(b_n-b)| \le |a_n-a|+|b_n-b|$
+
+		Возьмем $\varepsilon_1 = \frac{\varepsilon}{2}$. Тогда $\exists N_1 : \forall n > N_1 \Rightarrow |a_n-a|<\varepsilon_1$
+		
+		Возьмем $\varepsilon_2 = \frac{\varepsilon}{2}$. Тогда $\exists N_2 : \forall n > N_2 \Rightarrow |b_n-b|<\varepsilon_2$
+
+		Тогда при $n = \max (N_1, N_2)$ $|a_n-a|+|b_n-b|<\varepsilon_1+\varepsilon_2=\boxed{a+b}$
+	\end{prbox}
+
+	\begin{thbox}
+		Если последовательности $\lbrace a_n\rbrace$ и $\lbrace b_n\rbrace$ имеют конечные пределы, то произведение этих последовательностей также имеет конечный предел.
+		$$
+		\begin{cases}
+			\lim\limits_{n \to \infty}{a_n} = a\\
+			\lim\limits_{n \to \infty}{b_n} = b
+		\end{cases}
+		\Leftrightarrow
+		\lim\limits_{n \to \infty}{a_nb_n} = a b
+		$$
+	\end{thbox}
+
+	\begin{thbox}
+		Если последовательности $\lbrace a_n\rbrace$ и $\lbrace b_n\rbrace$ имеют конечные пределыб а также $\lim\limits_{n\to\infty}{b_n} \ne 0$ и $\forall n \in \mathbb{N} \Rightarrow b_n \ne 0$, то отношение этих последовательностей также имеет конечный предел.
+		$$
+		\begin{cases}
+			\lim\limits_{n \to \infty}{a_n} = a\\
+			\lim\limits_{n \to \infty}{b_n} = b
+		\end{cases}
+		\Leftrightarrow
+		\lim\limits_{n \to \infty}{\frac{a_n}{b_n}} = \frac{a_n}{b_n}
+		$$
+	\end{thbox}
+
+	\section{Предельный переход в неравенствах}
+
+	\begin{thbox}
+		Если $\lim\limits_{n\to\infty}{a_n} = a$, $\lim\limits_{n\to\infty}{b_n}=b$, и начиная с какого-то номера $a_n \le b_n$, то $a \le b$
+	\end{thbox}
+
+	\begin{prbox}
+		$$
+		a_n \le b_n \Leftrightarrow b_n - a_n \ge 0 \Rightarrow \lim_{n\to\infty}{b_n} -\lim_{n\to\infty}{a_n}\ge0 \Leftrightarrow
+		$$
+		$$
+		\Leftrightarrow \boxed{\lim_{n\to\infty}{b_n} \ge\lim_{n\to\infty}{a_n}}
+		$$
+	\end{prbox}
+
+	\newpage
+	\section{Предел сжатой последовательности}
+	\begin{thbox}
+		Пусть $\lim\limits_{n\to\infty} {a_n}= \lim\limits_{n\to\infty}{b_n}=c$, и, начиная с некоторого номера, справедливо неравенство $a_n \le x_n \le b_n$. Тогда $\lim\limits_{n\to\infty}{x_n}=c$
+	\end{thbox}
+
+	\begin{prbox}
+		$$
+		\lim_{n\to\infty}{a_n}=c \Leftrightarrow \forall \varepsilon > 0 \exists N_1 : \forall n > N_1 \Rightarrow |a_n - c |<\varepsilon
+		$$
+		$$
+		\lim_{n\to\infty}{b_n}=c \Leftrightarrow \forall \varepsilon > 0 \exists N_2 : \forall n > N_2 \Rightarrow |b_n - c |<\varepsilon
+		$$
+
+		Тогда при $N = \max (N_2, N_2)$ выполняются обы неравенства.
+
+		Рассмотрим $a_n \le x_n \le b_n$ при выбранном $N$.
+		$$
+		c-\varepsilon \le x_n \le c + \varepsilon
+		$$
+
+		Значит $x_n$ входит в $\varepsilon$-окрестность точки $c$ начиная с некоторого $N$, а значит $c$ также является ее пределом.
+	\end{prbox}
+
+	\chapter{Предел монотонной ограниченной последовательности. Теорема Вейерштрасса о пределе монотонной ограниченной последовательности}
+
+	\begin{thbox}
+		{[Теорема Вейерштрасса]}
+
+		Всякая монотонно возрастающая (убывающая) и ограниченная сверху (снизу) последовательность имеет конечный предел
+	\end{thbox}
+
+	\begin{prbox}
+		Докажем теорему для неубывающей последовательности. Для остальных доказывается аналогично.
+
+		Поскольку последовательность неубывающая, то $\forall n \Rightarrow x_n \le x_{n+1}$. Поскольку еще и она ограничена, то $\exists a=\sup\lbrace x_n\rbrace$. Это значит, что $\forall n \Rightarrow x_n \le a$. Так как $a$ -- супремум, то $\forall \varepsilon > 0 \exists N(\varepsilon) : x_N > a - \varepsilon$. Последовательность неубывающая, а значит при $n > N$: $x_n \ge x_N > a - \varepsilon$. Значит $a - \varepsilon < x_n \le a$, откуда следует, что $a - \varepsilon < x_n < a + \varepsilon \Leftrightarrow |x_n - a| < \varepsilon$ при $n > N$. Значит последовательность имеет предел.
+	\end{prbox}
+
+	\chapter{Неограниченность последовательности $x_n = q^n$, $q > 1$, оценка $q^{n-1} \le x < q^n$. Сходимость геометрической прогрессии и суммы геометрической прогрессии при $|q| < 1$. Предел последовательности $\frac{n}{q^n}$}
+
+	\section{Неограниченность $q^n$}
+
+	\begin{thbox}
+		Последовательность $q^n$, где $q>1$, неограничена
+	\end{thbox}
+
+	\begin{prbox}
+		Предположим, что это не так. Тогда $\exists \sup \lbrace q^n\rbrace = s$. $\forall n \Rightarrow q^n \le s$
+	\end{prbox}
+
+\end{document}
