@@ -652,10 +652,81 @@
 	\section{Оценка $q^{n-1}<x<q^n$}
 
 	\begin{thbox}
+		Для любого $x>0$ и $q>1$ существует единственное целое число $n\in\mathbb{Z}$ такое, что $q^{n-1}\le x<q^n$
 	\end{thbox}
 
 	\begin{prbox}
+		Рассмотрим множество $A = \lbrace k\in\mathbb{Z} : q^k \le x\rbrace$. Оно непусто, поскольку $k \to -\infty \Leftrightarrow q^k \to 0$. Это множество ограничено сверху, поскольку $\forall x > 0 \exists k : q^k > x$. Значит $\exists n=\max A$. По построению $q^n\le x$, но также по построению $q^{n+1}>x$. Таким образом $q^n \le x < q^{n+1}$. Заменив $n$ на $n-1$ получим $q^{n-1}\le x<q^n$.
+	\end{prbox}
+
+	\section{Геометрическая прогресия}
+
+	\begin{thbox}
+		Если $|q|<1$, то $\lim\limits_{n\to\infty}{q^n}=0$
+	\end{thbox}
+	\begin{prbox}
+		$\forall \varepsilon > 0 \exists N : \frac{1}{q^N}>\frac{1}{\varepsilon}$ (теорема выше) $\Rightarrow q^N < \varepsilon$. Значит, $\lim\limits_{n\to\infty}{q^n}=0$
+	\end{prbox}
+
+	\vspace{5pt}
+
+	\begin{thbox}
+		Если $|q|<1$, то геометрическая прогрессия $\lim\limits_{n\to\infty}{aq^n}$ стремится к $0$
+	\end{thbox}
+
+	\begin{prbox}
+		$$
+		\lim\limits_{n\to\infty}{aq^n} = a\lim\limits_{n\to\infty}{q^n}=0
+		$$
+	\end{prbox}
+	\vspace{5pt}
+
+	\begin{thbox}
+		{[Сумма геометрической прогрессии]}
 		
+		При $b_1=1$, $|q|<1$:
+		$$
+		S_n=\frac{1}{1-q}
+		$$
+	\end{thbox}
+	\begin{prbox}
+		$$
+		\begin{aligned}
+			S_n &= b_1+b_2+...+b_n=b_1+q(b_1 +b_2+...+b_{n-1})= \\
+			&=b_1+q(S_n-b_n)=b_1+qS_n+qb_n
+		\end{aligned}
+		$$
+		$$
+		S_n(1-q)=b_1-qb_n
+		$$
+		$$
+		S_n=\frac{b_1-qb_n}{1-q}
+		$$
+
+		При $b_1=1$ и $|q|<1$: $\boxed{S_n = \frac{1}{1-q}}$
+	\end{prbox}
+
+	\newpage
+	\begin{thbox}
+		Если $|q|>1$, то $\lim\limits_{n\to\infty}{\frac{n}{q^n}=0}$
+	\end{thbox}
+	\begin{prbox}
+		$\exists n>N: x_{n+1}<x_n \Rightarrow$ последовательность убывает, при этом неотрицательна. Тогда $\exists \lim\limits_{n\to\infty}\frac{n}{q^n}=a$
+		$$
+		\frac{x_{n+1}}{x_n}=\frac{n+1}{n}\cdot\frac{1}{q}
+		$$
+		$$
+		x_{n+1}=\frac{n+1}{n}\cdot\frac{1}{q}x_n
+		$$
+		$$
+		\lim_{n\to\infty}{x_{n+1}}=1\cdot \frac{1}{q}a
+		$$
+		$$
+		a=\frac{a}{q}
+		$$
+		$$
+		a=0
+		$$
 	\end{prbox}
 
 \end{document}
