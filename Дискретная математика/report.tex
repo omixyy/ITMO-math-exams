@@ -1,0 +1,109 @@
+\documentclass[14pt]{extreport}
+\usepackage{graphicx}
+\usepackage{gost}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\PassOptionsToPackage{russian,english}{babel}
+\usepackage[english,russian]{babel}
+\usepackage{tempora}
+\usepackage{hyperref}
+\linespread{1.3}
+\setlength{\parindent}{1.25cm}
+\usepackage{hyperref}
+
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{longtable}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead{} 
+\fancyfoot[C]{\thepage} 
+
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{amsthm}
+
+\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1}
+\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, #1}
+\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1}
+
+\newcommand{\defeq}[0]{\stackrel{\text{def}}{=}}
+
+\begin{document}
+\thispagestyle{empty}
+	\title{Математический анализ. Экзамен.}
+	\maketitle
+
+	\newpage
+	\tableofcontents
+	
+	\chapter{Способы задания множества. Порождающая процедура. Характеристическое свойство.}
+
+	\section{Способы задания множества}
+
+	\begin{enumerate}
+		\item Перечисление $\lbrace a, b, c ... \rbrace$
+		\item Характеристическое свойство $M \stackrel{\text{def}}{=} \lbrace x : P(x) \rbrace$, где $P(x)$ -- предикат
+		\item Порождающая процедура $M := \lbrace y : y = f(x), x \in E \rbrace$, где $f$ -- функция от $x$
+	\end{enumerate}
+	\section{Описание способов задания множества}
+
+	\begin{defbox}
+		\textbf{Характеристическое свойство} -- способ задания множества, при котором каждый его элемент обладает свойством $P(x)$
+
+		$$
+		M \defeq \lbrace x : P(x) \rbrace
+		$$
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Порождающая процедура} -- способ задания множества, при котором каждый его элемент является результатом выполнения функции $f$ от переменной $x$ из некоторого множества $E$.
+
+		$$
+		M := \lbrace y : y = f(x), x \in E \rbrace
+		$$
+	\end{defbox}
+
+	\chapter{Отображения. Инъекция, сюръекция, биекция. Прямые произведения множеств}
+
+	\section{Отображения}
+
+	\begin{defbox}
+		Отображение -- способ сопоставления элементов между множествами.
+	\end{defbox}
+
+	\noindent Отображения бывают трех видов:
+	\begin{enumerate}
+		\item Инъекция
+		\item Сюръекция
+		\item Биекция
+	\end{enumerate}
+
+	\begin{defbox}
+		\textbf{Инъекция} -- такое отображение $f(A) \to B$, при котором любой элемент $B$ имеет \textbf{не более одного} прообраза в множестве $A$.
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Сюръекция} -- такое отображение $f(A) \to B$, при котором любой элемент $B$ имеет \textbf{не менее одного} прообраза в множестве $A$.
+	\end{defbox}
+
+	\begin{defbox}
+		\textbf{Биекция} -- это отображение, являющееся и сюръекцией, и инъекцией одновременно. То есть взаимооднозначное соответствие.
+	\end{defbox}
+
+	\section{Прямые произведения множеств}
+
+	\begin{defbox}
+		\textbf{Прямое (декартово) произведение множеств} $A$ и $B$ -- все такие пары чисел $(a, b)$, где $a \in A$, $b \in B$.
+
+		$$
+		A \times B \defeq \lbrace (a, b) : a \in A, b \in B \rbrace
+		$$
+	\end{defbox}
+\end{document}
