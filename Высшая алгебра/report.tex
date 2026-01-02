@@ -28,11 +28,16 @@
 \usepackage{enumitem}
 \usepackage{geometry}
 \usepackage{amsthm}
+\tcbuselibrary{breakable}
 
-\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1}
-\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, #1}
-\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1}
-\newtcolorbox{impbox}[1][]{colback=red!5, colframe=red!60, title=Важно, #1}
+\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, breakable=true, #1, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{impbox}[1][]{colback=red!5, colframe=red!60, title=Важно, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
 
 \newcommand{\defeq}[0]{\stackrel{\text{def}}{=}}
 
@@ -679,5 +684,120 @@ B = \begin{pmatrix}
     Метод состоит в присоединении единичной матрицы к исходной справа и дальнейшем ее приведении к единичной. После этих операций справа появится обратная матрица.
 
     \chapter{Два определения ранга матрицы: максимальное число линейно независимых строк и размерность наибольшего ненулевого минора.}
+
+    \begin{defbox}
+        \textbf{Ранг матрицы} -- количество ее ненулевых строк, полученных после приведения к ступенчатому виду.
+    \end{defbox}
+
+    \begin{defbox}
+        \textbf{Ранг матрицы} -- это наибольший порядок минора, отличного от нуля (теорема о базисном миноре)
+    \end{defbox}
+
+    \chapter{Линейная зависимость и независимость строк (столбцов) матрицы. Понятие базисного минора. Теорема о базисном миноре.}
+
+    \begin{defbox}
+        Набор элементов называется \textbf{линейно зависисым}, если равенство нулю их линейной комбинации возможно хотя бы при одном коэффициенте, не равном нулю.
+        $$
+        \exists i : \alpha_i \ne 0 \Rightarrow \alpha_1a_1 + \alpha_2a_2 + ... + \alpha_ia_i +...\alpha_na_n=0
+        $$
+        Если один из векторов $a_i$ нулевой, то набор линейно зависим.
+    \end{defbox}
+
+    \begin{defbox}
+        \textbf{Базисный минор} -- это любой ненулевой минор наибольшего порядка
+    \end{defbox}
+    \vspace{10pt}
+    \newpage
+    \begin{thbox}
+        {[Теорема о базисном миноре]}
+
+        Строки (столбцы) матрицы, содержащие строки (столбцы) базисного минора линейно независимы. Любая строка (столбец) является линейной комбинацией базисных строк
+    \end{thbox}
+
+    \begin{prbox}
+        {[Линейная независимость базисных строк (столбцов)]}
+
+        Пусть базисный минор $M_{j_1...j_r}^{i_1...i_r}=M_r$ (располагается в $i_1...i_r$ строках и $j_1...j_r$ столбцах). Если столбцы матрицы, содержащие столбца базисного минора, линейно зависимы, то $\exists \lambda_1...\lambda_r : \forall i \Rightarrow \lambda_i \ne 0$:
+        $$
+        \lambda_1 a_{i1} +...+ \lambda_r a_{ir}=0
+        $$
+        $$
+        \lambda_1 \begin{pmatrix}
+            a_{1{j1}}\\
+            ...\\
+            a_{m{j1}}
+        \end{pmatrix}
+        +
+        \dots
+        + \lambda_r
+        \begin{pmatrix}
+            a_{1{jr}}\\
+            ...\\
+            a_{m{jr}}
+        \end{pmatrix}
+        =0
+        $$
+
+        Тогда выберем из полученной суммы строки базисного минора и получим противоречие:
+
+        $$
+        \lambda_1 \begin{pmatrix}
+                a_{i1{j1}}\\
+                ...\\
+                a_{ir{j1}}
+            \end{pmatrix}
+            +
+            \dots
+            + \lambda_r
+            \begin{pmatrix}
+                a_{i1{jr}}\\
+                ...\\
+                a_{i1{jr}}
+            \end{pmatrix}
+            =0
+    $$
+    Это означает, что строки базисного минора линейно зависимы. Получаем противоречие изначальному предположению ($\det M = 0$).
+
+    \vspace{20pt}
+    {[Строка (столбец) как линейная комбинация базисных]}
+
+    Рассмотрим $a_k \notin \lbrace a_j1, a_j2 ...a_jr\rbrace$ (к минору допишем столбец и строку из исходной матрицы)
+    $$
+    \Delta_p=
+    \begin{pmatrix}
+        a_{i1j1} & ... & a_{i1jr} & a_{i1k}\\
+        ...\\
+        a_{irj1} & ... & a_{irjr} & a_{irk}\\
+        a_{pj1} & ... & a_{pjr} & a_{pk}
+    \end{pmatrix}
+    $$
+    Если $p \in \lbrace i_1, i_2 ... i_r\rbrace$, то в матрице две строки одинаковые, и $\det \Delta_p = 0$
+
+    Иначе $\Delta_p$ -- минор $r+1$ порядка $\Rightarrow \det \Delta_p=0$
+
+    Разложим по строке $p$:
+
+    $$
+    \det \Delta_p = a_{pj1} A_{pj1} + ... + a_{pjr} A_{pjr} + a_{pk} A_{pk}=0
+    $$
+    $$
+    A_{pk} = (-1)^{r+1+r+1} M_r = M_r \ne 0
+    $$
+    $$
+    a_{pk} = -\frac{A_{r+1,1}}{M_r}-...-\frac{A_{r+1,r}}{M_r}a_{pjr}
+    $$
+    Но $\Delta_{r+1,r}$ не зависит от $p$. Тогда $\forall p -\frac{A_{r+1,i}}{M_r}=\lambda_i$. Распишем полученное для разных $p$:
+
+    $a_{1k}=\lambda_1a_{1j1} + ... + \lambda_ra_{1jr}$
+
+    $a_{2k}=\lambda_1a_{2j1} + ... + \lambda_ra_{2jr}$
+
+    ...
+
+    $a_{mk}=\lambda_1a_{mj1} + ... + \lambda_ra_{mjr}$
+
+    То есть получили разложение $k$- го столбца по остальным. То есть разложение существует
+
+    \end{prbox}
      
 \end{document}
