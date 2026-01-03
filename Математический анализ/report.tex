@@ -28,10 +28,16 @@
 \usepackage{enumitem}
 \usepackage{geometry}
 \usepackage{amsthm}
+\tcbuselibrary{breakable}
 
-\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1}
-\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, #1}
-\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1}
+\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, breakable=true, #1, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{impbox}[1][]{colback=red!5, colframe=red!60, title=Важно, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
 
 \newcommand{\defeq}[0]{\stackrel{\text{def}}{=}}
 

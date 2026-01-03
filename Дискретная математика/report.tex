@@ -29,9 +29,19 @@
 \usepackage{geometry}
 \usepackage{amsthm}
 
-\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1}
-\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, #1}
-\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1}
+\tcbuselibrary{breakable}
+
+\newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{prbox}[1][]{colback=green!5, colframe=green!60!gray, title=Доказательство, breakable=true, #1, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{defbox}[1][]{colback=blue!5, colframe=blue!60, title=Определение, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+\newtcolorbox{impbox}[1][]{colback=red!5, colframe=red!60, title=Важно, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
+
+\newtcolorbox{rulebox}[1][]{colback=purple!5, colframe=purple!60, title=Правило, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
+    bottomrule at break=0pt}
 
 \newcommand{\defeq}[0]{\stackrel{\text{def}}{=}}
 
@@ -106,4 +116,136 @@
 		A \times B \defeq \lbrace (a, b) : a \in A, b \in B \rbrace
 		$$
 	\end{defbox}
+
+	\chapter{Мощность множества}
+	\begin{defbox}
+		\textbf{Мощность множества} -- количество элементов в нем (для конечных множеств). 
+		
+		Для бесконечных:
+		\begin{enumerate}
+			\item Если между бесконечным множеством $X$ и множеством натуральных чисел $\mathbb{N}$ существует биекция, то говорят, что $X$ имеет счётную мощность. Это "наименьшая" бесконечная мощность.
+			\item Если между $X$ и множеством всех вещественных чисел $\mathbb{R}$ (или отрезком $[0,1]$) существует биекция, то говорят, что $X$ имеет мощность континуума.
+		\end{enumerate}
+	\end{defbox}
+
+	\chapter{Операции над множествами.}
+
+	\section{Операции}
+
+	\begin{enumerate}
+		\item $A\cap B$ -- пересечение 
+		$$
+		A \cap B \defeq \lbrace x : (x\in A) \wedge (x\in B) \rbrace
+		$$
+		\item $A\cup B$ -- объединение
+		$$
+		A\cap B \defeq \lbrace x : (x\in A) \vee (x \in B) \rbrace
+		$$
+		\item $A \setminus B$ -- разность
+		$$
+		A \setminus B \defeq \lbrace x : (x \in A) \wedge (x \notin B)\rbrace
+		$$
+		\item $A\triangle B$ -- симметрическая разность
+		$$
+		A \setminus B \defeq \lbrace x : (x \in (A \setminus B)) \vee (x \in (B \setminus A))\rbrace
+		$$
+		\item $\bar A$ -- дополнение до универсума
+		$$
+		\bar A \defeq \lbrace x : (x \notin A) \wedge (x \in U) \rbrace
+		$$
+
+	\end{enumerate}
+
+	\section{Свойства}
+	\begin{enumerate}
+		\item $A \cap A = A$, $A \cup A = A$
+		\item $A \cap (B \cap C) = (A \cap B) \cap C$,
+				
+				$A \cup (B \cup C) = (A \cup B) \cup C$
+		\item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$, 
+		
+				$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ 
+
+		\item $A \cup \emptyset = A$, $A \cap \emptyset = \emptyset$
+		\item $A \cup U = U$, $A \cap U = A$
+		\item $A \cap B = B \cap A$, $A \cup B = B \cup A$
+		\item $A \cup B = A \cap \bar{B}$,  
+		
+				$\overline{A \cap B} = \bar{A} \cup \bar B$
+		\item $\bar{ \bar A} = A$
+		\item $A \setminus B = A \cap \bar B$
+	\end{enumerate}
+
+	\chapter{Прямое произведение $N$ множеств.}
+
+	\begin{defbox}
+		\textbf{Прямое произведение $n$ множеств} -- все возможные кортежи из элементов этих $n$ множеств.
+
+		На примере двух множеств:
+		$$
+		A \times B = \lbrace (a, b) : a\in A, b \in B \rbrace
+		$$
+	\end{defbox}
+
+	\chapter{Теорема о мощности прямого произведения множеств}
+
+	\begin{thbox}
+		Если $A$ и $B$ конечны, $|A| = n$, $|B| = m$ то $|A \times B| = |A| |B| = mn$
+	\end{thbox}
+
+	\begin{prbox}
+		Рассмотрим кортеж. В нем на первом месте стоит элемент из $A$, на втором -- из $B$. К каждому элементу из $A$ можно приставить $m$ элементов из $B$, получив тем самым множество, представляющее собой результат декартового произведения. То есть на первом месте в кортеже может стоять $n$ элементов, на втором -- $m$. Значит всего таких кортежей можно составить $mn$ штук.
+	\end{prbox}
+
+	\chapter{Понятие вектора. Проекция вектора на оси. Проекция множества векторов}
+
+	\begin{defbox}
+		Пусть задано прямое произведение $A_1 \times A_2 \times ... \times A_n$. \textbf{Вектором} называется упорядоченный набор $(a_1, a_2, ... a_n)$, где $a_i \in A_i$
+	\end{defbox}
+
+	\begin{defbox}
+		Пусть задано прямое произведение $A_1 \times A_2 \times ... \times A_n$. \textbf{Проецированием $\operatorname{Pr}_k(a_1, a_2, ... a_k...a_n)$} называется отображение $(a_1, a_2, ... a_n) \rightarrow (a_k)$
+		$$
+		\operatorname{Pr}_k(a_1, a_2, ... a_k...a_n) \defeq f((a_1, a_2, ... a_k...a_n)) \rightarrow (a_k)
+		$$
+		Проецирование множества векторов:
+		$$
+		\operatorname{Pr}_{i, j, ... m}(\lbrace (a_1, a_2,...a_m), (b_1, b_2,...b_m)... \rbrace) = 
+		$$
+		$$
+		= \lbrace (a_i, a_j,...a_m), (b_i, b_j, ... b_m)... \rbrace
+		$$
+	\end{defbox}
+
+	\chapter{Правило суммы. Правило произведения.}
+
+	\begin{thbox}
+		{[Правило суммы]}
+
+		Пусть все выборки из множества $A$ делятся на две взаимоисключающие $A_1$ и $A_2$. Число выборок первого типа $m_1$, второго -- $m_2$. Тогда число всех выборок из множества $A$ равно $m_1 + m_2$
+	\end{thbox}
+
+	\begin{prbox}
+		Данное правило является следствием формулы включений-исключений:
+		$$
+		|A \cup B| = |A| + |B| - |A \cap B|
+		$$
+		где $A \cap B = \emptyset$
+	\end{prbox}
+
+	\begin{thbox}
+		{[Правило произведения]}
+		
+		Пусть число способов построить выборку из множества $A$ равно $n$, из множества $B$ -- $m$. Тогда число способов построить выборку $(a, b)$ ($a \in A, b \in B$) равно $mn$
+	\end{thbox}
+
+	\begin{prbox}
+		
+	\end{prbox}
+
+	\chapter{Число размещений без повторений, число размещений с повторениями}
+
+	\begin{thbox}
+		
+	\end{thbox}
 \end{document}
