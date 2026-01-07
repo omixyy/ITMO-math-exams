@@ -1301,4 +1301,37 @@ B = \begin{pmatrix}
 
     \end{prbox}
 
+    \chapter{Определение линейной оболочки системы векторов.}
+    \begin{defbox}
+        Пусть есть набор $u_1,...u_n$ векторов в $L$.
+
+        \textbf{Линейная оболочка} системы векторов -- это множество всех линейных комбинация этих векторов
+        $$
+        L<u_1\dots u_n>=\lbrace\alpha_1u_1 + \alpha_2u_2 + \dots +\alpha_nu_n : \alpha_1, \dots \alpha_n \in \mathbb{R}\rbrace
+        $$
+    \end{defbox}
+
+    \chapter{Определение подпространства линейного пространства. Базис подпространства.}
+    \begin{defbox}
+        Пусть $L$ -- линейное пространство над некоторым полем.
+
+        Пусть $L_1$ -- подмножество векторов (элементов) $L$ такое, что выполняются:
+        \begin{enumerate}
+            \item $x \in L_1 \wedge y \in L_1 \Leftrightarrow x + y \in L_1$
+            \item $x \in L_1 \Leftrightarrow \forall \alpha \Rightarrow \alpha x \in L_1$
+        \end{enumerate}
+        Тогда $L_1$ называется \textbf{подпространством} $L$
+    \end{defbox}
+    \begin{thbox}
+        Если $L_1$ -- собственное подпространство $L$, то $\dim L > \dim L_1$
+    \end{thbox}
+    \begin{prbox}
+        Пусть $\dim L = \dim L_1$. Базис $L_1$: $e_1,\dots e_n$
+
+        Разложим некоторый вектор $x \in L_1$ бо базису $L_1$:
+        $$
+        x = x_1e_1 + \dots + x_ne_n
+        $$
+        Но $\dim L = n$, при этом по аксиоме $x \in L$. Значит $e_1,\dots e_n$ -- базис $L$. То есть любой вектор из $L_1$ содержится и в $L$, а значит $L=L_1$. Противоречие 
+    \end{prbox}
 \end{document}
