@@ -738,7 +738,90 @@
 	\chapter{Определение числа $e$. Свойства последовательностей, связанных с числом $e$.}
 
 	\begin{defbox}
-		\textbf{Число $e$} -- 
+		\textbf{Число $e$} определяется как предел последовательности $(1+\frac{1}{n})^n$
+		$$
+		e = \lim_{n \to \infty}{\left(1+\frac{1}{n}\right)^n}
+		$$
 	\end{defbox}
+
+	\begin{thbox}
+		Предел последовательности $\lim_{n \to \infty}{\left(1+\frac{1}{n}\right)^n}$ существует
+	\end{thbox}
+	\begin{prbox}
+		Докажем по теореме Вейерштрасса
+
+		{[Монотонность]}
+		$$
+		\frac{x_{n+1}}{x_n} = \frac{\left(1+\frac{1}{n+1}\right)^{n+1}}{\left(1+\frac{1}{n}\right)^{n}}=\left(1+\frac{1}{n+1}\right)\left(\frac{1+\frac{1}{n+1}}{1+\frac{1}{n}}\right)^n=
+		$$
+		$$
+		=\left(1+\frac{1}{n+1}\right)\left(\frac{n^2+2n}{(n+1)^2}\right)^n=\left(1+\frac{1}{n+1}\right)\left(1-\frac{1}{(n+1)^2}\right)^n\ge
+		$$
+		Воспользуемся неравенством Бернулли $(1+a)^n \ge 1+an$ при $a \ge -1$:
+		$$
+		\ge \left(1+\frac{1}{n+1}\right)\left(1-\frac{n}{(n+1)^2}\right)=\left(\frac{n+2}{n+1}\right)\left(\frac{n^2+n+1}{(n+1)^2}\right)=
+		$$
+		$$
+		=\frac{n^3+3n^2+3n+2}{n^3+3n^2+3n+1} > 1
+		$$
+		Последовательность возрастает
+		\vspace{20pt}
+
+		{[Ограниченность]}
+		$$
+		\left(1+\frac{1}{n}\right)^n=\sum_{k=0}^nC_n^k\frac{1}{n^k}=\sum_{k=0}^n\frac{n!}{k!(n-k)!n^k}=
+		$$
+		$$
+		=\sum_{k=0}^n\frac{n\cdot (n-1) \cdot ... \cdot (n-k+1)}{n^kk!}\le
+		$$
+
+		Поскольку $\frac{n\cdot (n-1) \cdot ... \cdot (n-k+1)}{n^k}<1$, то:
+		$$
+		\le \sum_{k=0}^n \frac{1}{k!} \le 1 + 1 + \frac{1}{2} + \frac{1}{2^2} +... < 1 + \frac{1}{1 - \frac{1}{2}} < 3
+		$$
+
+	\end{prbox}
+
+	\noindent Связанные последовательности:
+	\begin{itemize}
+		\item $\lim\limits_{n \to \infty}{\left(1+\frac{x}{n}\right)^n}=e^x$
+		\item $\lim\limits_{n \to \infty}{\left(1-\frac{1}{n}\right)^n}=\frac{1}{e}$
+		\item $\lim\limits_{n \to \infty}{\left(1+\frac{1}{n}\right)^{n+1}}=e^x$
+	\end{itemize}
+
+	\chapter{Фундаментальные последовательности. Критерий Коши сходимости последовательности.}
+
+	\begin{defbox}
+		Последовательность $\lbrace x_n\rbrace$ называется \textbf{фундаментальной}, если:
+		$$
+		\forall \varepsilon > 0 \exists N : \forall m > N, n > N \Rightarrow |x_n - x_m| < \varepsilon
+		$$
+	\end{defbox}
+
+	\begin{thbox}
+		{[Критерий сходимости Коши]}
+
+		Последовательность имеет предел тогда и только тогда, когда она фундаментальна
+	\end{thbox}
+
+	\begin{prbox}
+		{[Имеет предел $\Rightarrow$ фундаментальна]}
+
+		Пусть $\exists \lim\limits_{n \to \infty}{x_n} = a$. Докажем, что последовательность фундаментальна.
+
+		Пусть задано $\varepsilon$. Возьмем $\varepsilon_1 = \frac{\varepsilon}{2}$
+
+		$$\exists N_1 : \forall n > N_1 \Rightarrow |x_n - a| < \varepsilon_1$$
+		$$\exists N_2 : \forall m > N_2 \Rightarrow |x_2 - a| < \varepsilon_1$$
+		$$|x_n-x_m| = |(x_n-a)-(x_m-a)|\le \varepsilon_1 + \varepsilon_1 < \varepsilon$$
+		\vspace{20pt}
+
+		{[Фундаментальна $\Rightarrow$ имеет предел]}
+
+		Зафиксируем $m > N(\varepsilon)$. Тогда все члены следующие члены последовательности лежат в этой $\varepsilon$-окрестности члена $x_m$. Значит последовательность ограничена, а тогда из нее можно выделить сходящуюся подпоследовательность $x_{n_k} \to a$. Докажем, что это и будет предел последовательности. 
+
+		Все члены подпоследовательности $\lbrace x_{n_k}\rbrace$ начиная с некоторого номера $m$ лежат в $\varepsilon$-окрестности точки $a$, но при этом сами лежат в $\varepsilon$-окрестности точки $x_m$. Значит $|a-x_n|<2\varepsilon$
+
+	\end{prbox}
 
 \end{document}
