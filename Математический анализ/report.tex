@@ -881,4 +881,130 @@
 
 	\end{prbox}
 
+	\chapter{Определение и свойства предела функции в точке. Предел функции по Коши и по Гейне. Равносильность определений.}
+
+	\section{Определения. Равносильность определений}
+	\begin{defbox}
+		{[Определение по Коши]}
+
+		Число $a$ называется \textbf{пределом} функции $f$ в точке $x_0$, если для любого $\varepsilon > 0$ существует $\delta > 0$ такая, что если $|x - x_0| < \delta$, то выполняется $|f(x) - f(x_0)| < \varepsilon$
+		$$
+		\lim_{x \to x_0} f(x) = a \Leftrightarrow \forall \varepsilon > 0 \exists \delta > 0 : 0 < |x - x_0| < \delta \Rightarrow |f(x)-a| < \varepsilon
+		$$
+	\end{defbox}
+
+	\begin{defbox}
+		{[Определение по Гейне]}
+
+		Число $a$ называется пределом функции $f$ в точке $x_0$, если для любой последовательности $\lbrace x_n \rbrace$, сходящейся к $x_0$, и члены которой не равны $x_0$, $\lim\limits_{n \to \infty} f(x_n) = a$
+		$$
+		\lim_{x \to x_0} f(x) = a \Leftrightarrow \forall \lbrace x_n \rbrace : \lim_{n \to \infty} x_n = x_0 \Rightarrow \lim_{n\to \infty} f(x_n) = a
+		$$
+	\end{defbox}
+	\vspace{20pt}
+
+	\begin{thbox}
+		Определения пределов по Коши и по Гейне эквивалентны
+	\end{thbox}
+	\begin{prbox}
+		{[Коши $\Rightarrow$ Гейне]}
+
+		Известно, что $\forall \varepsilon > 0 \exists \delta > 0 : 0 < |x - x_0| < \delta \Rightarrow |f(x)-a| < \varepsilon$. Возьмем последовательность $\lbrace x_n\rbrace$ такую, что $\forall n \Rightarrow \lbrace x_n \rbrace \subset X \setminus \lbrace a \rbrace$ и $\lim\limits_{n \to \infty} x_n = x_0$.
+		По определению Коши найдется $\delta > 0$ такое, что при нахождении $x$ в этой $\delta$-окрестности точки $x_0$ выполняется $|f(x) - a| < \varepsilon$. Но ведь последовательность $x_n \to x_0$, значит начиная с некоторого номера члены этой последовательности также находятся в $\delta$-окрестности, и поэтому для них также выполняется $|f(x) - a| < \varepsilon$
+		\vspace{20pt}
+
+		{[Гейне $\Rightarrow$ Коши]}
+
+		Предположим, что определение Коши не выполняется. Тогда выполняется:
+		$$
+		\exists \varepsilon > 0 : \forall \delta > 0 \Rightarrow 0 < |x - x_0| < \delta \Rightarrow |f(x) - a| \ge \varepsilon 
+		$$
+		При этом выполняется Гейне, то есть:
+		$$
+		\forall \lbrace x_n \rbrace : \lim_{n \to \infty} x_n = x_0 \Rightarrow \lim_{n\to \infty} f(x_n) = a
+		$$
+		Возьмем $\delta_n = \frac{1}{n}$. Тогда из отрицания Коши выполнено:
+		$$
+		0 < |x_n - x_0| < \frac{1}{n}
+		$$
+		Значит $\lbrace x_n \rbrace \to x_0$, но из Гейне известно, что тогда $\lim\limits_{n \to \infty} f(x_n) = a$, однако из отрицания Коши следует обратное. Противоречие.
+	\end{prbox}
+
+	\section{Свойства пределов функций}
+	\begin{enumerate}
+		\item $\lim\limits_{x \to x_0} \left( f(x) \pm g(x) \right) = \lim\limits_{x \to x_0}f(x) \pm \lim\limits_{x \to x_0} g(x)$
+		\item $\lim\limits_{x \to x_0} \left( f(x) \cdot g(x) \right) = \lim\limits_{x \to x_0}f(x) \cdot \lim\limits_{x \to x_0} g(x)$
+		\item $\lim\limits_{x \to x_0}  \frac{f(x)}{g(x)}  = \frac{\lim\limits_{x \to x_0}f(x)}{\lim\limits_{x \to x_0} g(x)}$, где $g(x) \ne 0$
+		\item $\lim\limits_{x \to x_0} \left( \lambda f(x) \right) = \lambda \lim\limits_{x \to x_0} f(x)$
+	\end{enumerate}
+
+	\chapter{Предельный переход в неравенствах. Теорема о сжатой функции.}
+
+	\begin{thbox}
+		Пусть функции $f$ и $g$ определены в некоторой проколотой окрестности точки $x_0$ и для всех $x$ из этой окрестности выполняется $f(x) \le g(x)$. Тогда если в точке $x_0$ существуют пределы этих функций $\lim\limits_{x \to x_0} f(x) = A$, $\lim\limits_{x \to x_0} g(x) = B$, то $A \le B$
+	\end{thbox}
+
+	\begin{prbox}
+		Пусть $A > B$. Тогда возьмем $\varepsilon = \frac{A - B}{2}$. Взяв достаточно малую $\delta$-окрестность можно утверждать, что $f(x) > A - \varepsilon = \frac{A+B}{2}$, а также $g(x) < B + \varepsilon = \frac{A+B}{2}$
+		Но отсюда следует, что $f(x) > g(x)$
+	\end{prbox}
+	\vspace{20pt}
+
+	\begin{thbox}
+		Если функции $f$, $g$, $h$ определены в некоторой проколотой окрестности точки $x_0$, а также выполнено $f(x) \le g(x) \le h(x)$, и при этом $\lim\limits_{x \to x_0} f(x) = \lim\limits_{x \to x_0} h(x) = a$, то $\lim\limits_{x \to x_0} g(x) = a$
+	\end{thbox}
+	\begin{prbox}
+		Если взять достаточно малую $\delta$-окрестность точки $a$, то можно утверждать, что $|f(x) - a| < \varepsilon$ и $|h(x) - a| < \varepsilon$. Тогда:
+		$$
+		a - \varepsilon < f(x) \le g(x) \le h(x) < a + \varepsilon
+		$$
+		Но тогда $g(x)$ также входит в $\varepsilon$-окрестность точки $a$ при достаточно малой $\delta$-окрестности
+	\end{prbox}
+
+	\chapter{Предел суммы, произведения, частного функций. Предел сложной функции. Предел обратной функции}
+
+	\begin{thbox}
+		Если функции определены в некоторой проколотой окрестности точки $x_0$ и имеют конечные пределы в ней, то предел суммы есть сумма пределов
+		$$
+		\lim_{x \to x_0} f(x) \pm g(x) = \lim_{x \to x_0} f(x) \pm \lim_{x \to x_0} g(x) = a \pm b
+		$$
+	\end{thbox}
+	\begin{prbox}
+		$$
+		\forall \varepsilon > 0 \exists \delta_1 : 0 < |x - x_0| < \delta_1 \Rightarrow |f(x) - a| < \varepsilon
+		$$
+		$$
+		\forall \varepsilon > 0 \exists \delta_2 : 0 < |x - x_0| < \delta_2 \Rightarrow |g(x) - a| < \varepsilon
+		$$
+		Возьмем $\delta = \min \lbrace \delta_1, \delta_2 \rbrace$. Тогда обе функции фхудят в заданную $\varepsilon$-окрестность своего предела.
+		$$
+		|f(x) \pm g(x) - (a \pm b)| \le |f(x) - a| + |g(x) - b| < (a + b) < 2\varepsilon
+		$$
+	\end{prbox}
+	\vspace{20pt}
+	\begin{thbox}
+		Если функции определены в некоторой проколотой окрестности точки $x_0$ и имеют конечные пределы в ней, то предел произведения есть произведение пределов
+	\end{thbox}
+	\begin{prbox}
+		$$
+		|f(x)g(x) - ab| = |f(x)g(x) - bf(x) + bf(x) - ab| = 
+		$$
+		$$
+		= |f(x)(g(x) - b) + b(f(x) - a)| \le |f(x)||g(x) - b| + |b||f(x) - a|
+		$$
+		Сходящаяся функция локально ограничена. $\exists M > f(x)$
+		$$
+		|f(x)||g(x) - b| + |b||f(x) - a| \le M|g(x) - b| + |b||f(x) - a|
+		$$
+		Начиная с какой-то достаточно малой $\delta$-окрестности выполняется: $|g(x) - b| < \frac{\varepsilon}{2M}$, $|f(x) - a| < \frac{\varepsilon}{2|b|}$
+		$$
+		M|g(x) - b| + |b||f(x) - a| \le M \frac{\varepsilon}{2M} + |b| \frac{\varepsilon}{2|b|} < \varepsilon
+		$$
+	\end{prbox}
+	\vspace{20pt}
+
+	\begin{thbox}
+		Если функции определены в некоторой проколотой окрестности точки $x_0$ и имеют конечные пределы в ней, то предел частного есть частное пределов
+	\end{thbox}
+
 \end{document}
