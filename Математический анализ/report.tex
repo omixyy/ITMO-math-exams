@@ -963,6 +963,7 @@
 
 	\chapter{Предел суммы, произведения, частного функций. Предел сложной функции. Предел обратной функции}
 
+	\section{Алгебраические действия с пределами}
 	\begin{thbox}
 		Если функции определены в некоторой проколотой окрестности точки $x_0$ и имеют конечные пределы в ней, то предел суммы есть сумма пределов
 		$$
@@ -1006,5 +1007,98 @@
 	\begin{thbox}
 		Если функции определены в некоторой проколотой окрестности точки $x_0$ и имеют конечные пределы в ней, то предел частного есть частное пределов
 	\end{thbox}
+	\begin{prbox}
+		Доказательство аналогичное
+	\end{prbox}
+
+	\section{Предел сложной функции}
+	\begin{thbox}
+		Пусть $\lim\limits_{x \to b} f(x) = a$, $\lim\limits_{x \to x_0} g(x) = b$. Тогда $\lim\limits_{x \to x_0} f(g(x)) = a$
+	\end{thbox}
+	\begin{prbox}
+		$$
+		\lim\limits_{x \to b} f(x) = a \Leftrightarrow 0 < |x - b| < \delta \Rightarrow |f(x) - a| < \varepsilon
+		$$
+		$$
+		\lim\limits_{x \to x_0} g(x) = b \Leftrightarrow 0 < |x - x_0| < \delta \Rightarrow |g(x) - b| < \varepsilon
+		$$
+		То есть существует $\delta$-окрестность точки $x_0$, в которой $g(x)$ входит в $\varepsilon$-окрестность точки $b$. Но также известно, что если $x$ входит в $\varepsilon$-окрестность точки $b$, то $f(x)$ входит в $\varepsilon$-окрестность точки $a$ Но тогда выходит, что должно выполянться:
+		$$
+		0 < |x - x_0| < \delta \Rightarrow |g(x) - b| < \varepsilon \Rightarrow |f(g(x)) - a| < \varepsilon
+		$$
+		Это и означает, что $\lim\limits_{x \to x_0} f(g(x)) = a$
+	\end{prbox}
+
+	\section{Предел обратной функции}
+	\begin{thbox}
+		Пусть функция $f$ строго монотонна и непрерывна на интервале $(a, b)$, $\lim\limits_{x \to x_0} f(x) = y_0$. Тогда предел обратной функции в точке $x_0$ равен $\lim\limits_{y \to y_0} f^{-1}(y) = x_0$
+	\end{thbox}
+	\begin{prbox}
+		Рассмотрим обратную функцию $f^{-1}(y)$. Она непрерывна на интервале $(a, b)$, поскольку исходная функция непрерывна на этом же интервале, при этом из нерперывности также следует, что $\lim\limits_{x \to x_0} f(x) = f(x_0)$. Но тогда $\lim\limits_{y \to y_0} f^{-1}(y) = f^{-1}(y_0) = x_0$.
+	\end{prbox}
+
+	\chapter{Понятие неопределенности. Вычисление пределов. Примеры раскрытия неопределенностей разного типа.}
+
+	\begin{defbox}
+		\textbf{Неопределенность} -- это ситуация, при которой в ходе вычисления предела подстановка предельного значения приводит к выражению, не имеющему смысла.
+	\end{defbox}
+
+	\noindent Типы неопределенностей:
+	\begin{enumerate}
+		\item $\frac{0}{0}$
+		\item $0 \cdot \infty$
+		\item $\frac{\infty}{\infty}$
+		\item $\infty - \infty$
+		\item $1^{\infty}$
+		\item $0^0$
+		\item $\infty^0$
+	\end{enumerate}
+
+	\noindent Примеры раскрытия:
+	\begin{enumerate}
+		\item Неопределенности при делении удобно раскрывать правилом Лопиталя
+		\item 
+	\end{enumerate}
+
+	\chapter{Предел функции в точке, равный бесконечности. Теоремы о пределах произведений и частных, содержащих бесконечно большие, бесконечно малые, ограниченные функции.}
+
+	\begin{defbox}
+		Предел функции в точке $x_0$ называется \textbf{равным бесконечности}, если $\forall M < 0 \exists \delta > 0 : 0 < |x - x_0| < \delta \Rightarrow |f(x)| > M$
+	\end{defbox}
+	\begin{defbox}
+		Функция $\alpha(x)$ называется \textbf{бесконечно большой}, если $\lim\limits_{x \to x_0} \alpha(x) = \infty$
+	\end{defbox}
+	\begin{defbox}
+		Функция $\beta(x)$ называется \textbf{бесконечно малой}, если $\lim\limits_{x \to x_0} \beta(x) = 0$
+	\end{defbox}
+	\vspace{20pt}
+	\begin{thbox}
+		Пусть функция $\alpha(x)$ -- бесконечно малая при $x \to x_0$, а $g(x)$ ограничена в окрестности $x_0$. Тогда произведение таких функций -- бесконечно малая.
+	\end{thbox}
+
+	\begin{prbox}
+		$g(x)$ огр. $\Leftrightarrow \exists M > 0, \delta_1 > 0 : 0 < |x - x_0| < \delta_1 \Rightarrow |f(x) - M| < M$
+
+		$\alpha(x)$ -- б.м. $\Leftrightarrow \forall \varepsilon > 0 \exists \delta_2 : 0 < |x - x_0| < \delta_2 \Rightarrow |\alpha(x)| < \frac{\varepsilon}{M}$
+
+		Оценим $|\alpha(x)g(x)|$:
+		$$
+		|\alpha(x)g(x)| = |\alpha(x)| \cdot |g(x)| < \frac{\varepsilon}{M}\cdot M = \varepsilon
+		$$
+	\end{prbox}
+
+	\vspace{20pt}
+	\begin{thbox}
+		Если $\beta(x)$ -- бесконечно большая при $x \to x_0$, то $\frac{1}{\beta(x)}$ -- бесконечно малая при $x \to x_0$
+	\end{thbox}
+	\begin{prbox}
+		$$
+		\forall M > 0 \exists \delta_1 > 0 : 0 < |x - x_0| < \delta_1 \Rightarrow |\beta(x)| > M = \frac{1}{\varepsilon} \Leftrightarrow
+		$$
+		$$
+		\Leftrightarrow \frac{1}{|\beta(x)|} < \varepsilon
+		$$
+		Это и означает, что $\frac{1}{\beta}$ -- бесконечно малая в $x_0$
+	\end{prbox}
 
 \end{document}
