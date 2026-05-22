@@ -29,6 +29,10 @@
 \usepackage{geometry}
 \usepackage{amsthm}
 \tcbuselibrary{breakable}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+
+
 
 \newtcolorbox{thbox}[1][]{colback=orange!10, colframe=orange!60, title=Теорема, #1, breakable=true, toprule at break=0pt, % верхняя рамка не показывается при разрыве
     bottomrule at break=0pt}
@@ -93,17 +97,202 @@
     \begin{defbox}
         Число $\lambda$ называется \textbf{собственным числом} оператора $A$, если существует ненулевой вектор такой, что $Ax = \lambda x$
     \end{defbox}
+    \begin{defbox}
+        Ненулевой вектор $x$ называется \textbf{собственным вектором} оператора $A$, если $Ax = \lambda x$
+    \end{defbox}
     \begin{thbox}
         Число $\lambda$ называется \textbf{собственным числом} оператора $A$ тогда и только тогда, когда $\det(A - \lambda E) = 0$
     \end{thbox}
     \begin{prbox}
-        1. $x$ -- собственный $\Leftrightarrow \det (A - \lambda E) = 0$ 
+        1. $x$ -- собственный $\Rightarrow \det (A - \lambda E) = 0$ 
         $$
         Ax = \lambda x = \lambda E x
         $$
         $$
         (A - \lambda E )x = 0
         $$
-        Где $A - \lambda E$ -- линейный оператор
+        Где $A - \lambda E$ -- линейный оператор, при этом $x \ne 0$. Если $x \in \Ker (A - \lambda E)$, то ядро нетривиально и $\dim \Ker(A - \lambda E) \ge 1 \Rightarrow \dim \Ima(A - \lambda E) < n$, а значит $A - \lambda E$ имеет зависимые строки
+        
+        \vspace{10pt}
+        2. $\det (A - \lambda E) = 0 \Rightarrow x$ -- собственный
+
+        $A - \lambda E$ в матричной форме: 
+        $$
+        B \cdot \begin{pmatrix}
+            x_1\\
+            \vdots\\
+            x_n
+        \end{pmatrix} = \begin{pmatrix}
+            0\\
+            \vdots\\
+            0
+        \end{pmatrix}
+        $$
+        $$
+        Bx = 0
+        $$
+        $\det B = 0 \Rightarrow$ система имеет нетривиальные решения $\Rightarrow x \ne 0$, значит собственный
+    \end{prbox} 
+
+    \chapter{Свойства линейных операторов. Матричная запись.}
+    \section{Свойства линейных операторов}
+    \begin{enumerate}
+        \item $A(0) = A(0x) = 0Ax = 0$
+        \item Если $x = \alpha_1 x_1 + \cdots + \alpha_n x_n$, то $A(x) = \alpha_1A(x_1) + \cdots + \alpha_nA(x_n)$
+        \item $(A+B)(x) = A(x) + B(x)$
+        \item $(\lambda A)(x) = \lambda A(x)$
+        \item $(AB)(x) = A(B(x))$
+    \end{enumerate}
+
+    \section{Матричная запись}
+    Любой линейный оператор можно записать в виде матрицы, столбцами которого будут векторы-результаты действия оператора на базисные
+
+    Пусть есть пространство $V$ с базисом $e_1\cdots e_n$, $x = x_1e_1 + \cdots x_ne_n$. Для задания линейного оператора надо знать $A(e_1)\cdots A(e_n)$.
+
+    Пусть $A(e_j) = a_{1j}e_1 + \cdots + a_{nj}e_n$. Тогда матрица оператора:
+    $$
+    A = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n}\\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{n1} & a_{n2} & \cdots & a_{nn}
+    \end{pmatrix}
+    $$
+
+    \chapter{Преобразование матрицы оператора при переходе к новому базису.}
+    Пусть в линейном пространстве $V$ старый базис: $e_1\cdots e_n$ и новый базис $e'_1\cdots e'_n$, и в старом базисе оператор имеет матрицу $A$, и в новом -- $A'$.
+
+    Выразим новый базис через старый:
+    $$
+    e_j'=\sum_{i=1}^nc_{ij}e_i
+    $$
+    Коэффициенты $c_{ij}$ образуют матрицу перехода:
+    $$
+    C = \begin{pmatrix}
+        c_{11} & \cdots & c_{1n}\\
+        \vdots & \ddots & \vdots\\
+        c_{n1} & \cdots & c_{nn}
+    \end{pmatrix}
+    $$
+    Так как базисы состоят из линейно независимых векторов, то матрица перехода обратима:
+    $$
+    \det C \ne 0
+    $$
+    Поэтому:
+    $$
+    X = CX',\quad X' = C^{-1}X
+    $$
+    \section{Связь матриц оператора в разных базисах}
+    Пусть:
+    $$
+    Y=AX, \quad Y'=A'X'
+    $$
+    Преобразования координат:
+    $$
+    X=CX', \quad Y=CY'
+    $$
+    Тогда:
+    $$
+    CY'=ACX'
+    $$
+    $$
+    Y' = C^{-1}ACX'
+    $$
+    $$
+    A'X'=C^{-1}ACX'
+    $$
+    $$
+    \boxed{A'=C^{-1}AC}
+    $$
+
+    \chapter{Ядро и образ линейного оператора. Теоремы о размерностях.}
+    \begin{defbox}
+        \textbf{Ядром} линейного оператора называется множество всех векторов $X$, для которых $AX=0$.
+        $$
+        \Ker A = \lbrace C \in U : AX = 0 \rbrace
+        $$
+    \end{defbox}
+    \begin{defbox}
+        \textbf{Образом} линейного оператора называется множество всех векторов $y \in V$, для которых есть прообраз в $U$.
+        $$
+        \Ima A = \lbrace y \in V : y = AX \rbrace
+        $$
+    \end{defbox}
+    \begin{impbox}
+        Ядро и образ являются подпространствами
+    \end{impbox}
+    \begin{defbox}
+        $\dim \Ker A$ называется дефектом оператора $A$
+        
+        $\dim \Ima A$ называется рангом оператора $A$%
+    \end{defbox}
+    \begin{thbox}
+        Для линейного оператора $A: V \rightarrow V$ справедливо:
+        $$
+        \dim \Ker A + \dim \Ima A = \dim V
+        $$
+    \end{thbox}
+    \begin{thbox}
+        $$
+        \dim \Ker AB \le \dim\Ker A + \dim\Ker B
+        $$
+    \end{thbox}
+    \begin{thbox}
+        $$
+        \dim \Ima AB \ge \dim\Ima A + \dim\Ima B
+        $$
+    \end{thbox}
+
+    \chapter{Инвариантные подпространства линейных операторов. Связь с собственными векторами.}
+    \begin{defbox}
+        Пусть $A: U \rightarrow U$, $V $-- подпространство $U$. $V$ называется инвариантным подпространством $A$, если 
+        $$
+        \forall x \in V \: y=Ax\in V
+        $$
+    \end{defbox}
+    \begin{thbox}
+        Пусть $x$ -- собственный вектор. Тогда $L = \langle x \rangle$ -- инвариантное подпространство
+    \end{thbox}
+    \begin{thbox}
+        Оператор диагонализуем тогда и только тогда, когда пространство $U$ раскладывается в прямую сумму $n$ инвариантных пространств опреатора
+        $$
+        U = H_1 \oplus H_2 \oplus \cdots \oplus H_n
+        $$
+    \end{thbox}
+
+    \chapter{Примеры линейных операторов. Оператор проектирования.}
+    \begin{defbox}
+        \textbf{Оператор проектирования} -- такой оператор $P$, для которого верно
+        $$
+        P = P^2
+        $$
+    \end{defbox}
+    \begin{thbox}
+        $$
+        U = \Ker P + \Ima P
+        $$
+    \end{thbox}
+    \begin{thbox}
+        $$
+        \Ker P \cap \Ima P = \lbrace 0 \rbrace
+        $$
+    \end{thbox}
+    \begin{prbox}
+        Пусть есть $\begin{cases}w \in \Ker P\\w \in \Ima P\end{cases}$, тогда:
+        $$
+        \begin{cases}
+            Pw = 0\\
+            \exists z : Pz = w
+        \end{cases}
+        \Rightarrow
+        PPz = 0 \Leftrightarrow P^2z=0 \Rightarrow Pz = w = 0
+        $$
     \end{prbox}
+    \begin{thbox}
+        Оператор проектирования можно представить в виде:
+        $$
+        P = A(A^TA)^{-1}A^T
+        $$
+    \end{thbox}
+
 \end{document}
