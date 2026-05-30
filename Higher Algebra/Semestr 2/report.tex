@@ -295,11 +295,118 @@
         $$
     \end{thbox}
 
+    \chapter{Вещественное евклидово пространство}
 
+    \begin{defbox}
+        \textbf{Вещественным евклидовым пространством} называется линейное пространство $E$ над полем $\mathbb{R}$, если на нем задано отображение $(\cdot, \cdot):V \times V \rightarrow \mathbb{R}$, обладающее следующими свойствами для любых $x, y, z \in V$, $\lambda \in \mathbb{R}$:
+        \begin{enumerate}
+            \item Симметричность: $(x, y) = (y, x)$
+            \item Аддитивность: $(x_1 + x_2, y) = (x_1, y) + (x_2, y)$
+            \item Положительная определенность: $(x, x) \ge 0$, $(x, x) = 0 \Leftrightarrow x = 0$
+            \item Однородность: $(\lambda x, y) = \lambda (x, y)$
+        \end{enumerate}
+    \end{defbox}
 
+    Пример евклидова пространства: $\mathbb{R}^n$. Для векторов $x = (x_1\cdots x_n)$, $y = (y_1\cdots y_n)$ определяется скалярное произведение:
+    $$
+    (x, y) = \sum_{i=1}^n x_iy_i
+    $$
+    Такое отображение подходит по всем аксиомам.
 
+    \chapter{Скалярное произведение}
+    \begin{defbox}
+        \textbf{Скалярным произведением} называется отображение $(\cdot, \cdot):V \times V \rightarrow \mathbb{R}$, которое в соответствие каждой паре векторов $x, y \in V$ ставит в соответствие число $(x, y)$ и удовлетворяет аксиомам для любых $x, y, z \in V$, $\lambda \in \mathbb{R}$:
+        \begin{enumerate}
+            \item Симметричность: $(x, y) = (y, x)$
+            \item Аддитивность: $(x_1 + x_2, y) = (x_1, y) + (x_2, y)$
+            \item Положительная определенность: $(x, x) \ge 0$, $(x, x) = 0 \Leftrightarrow x = 0$
+            \item Однородность: $(\lambda x, y) = \lambda (x, y)$
+        \end{enumerate}
+    \end{defbox}
+    \begin{defbox}
+        Пусть задан базис $e_1\cdots e_n$.  Тогда:
+        $$
+        x = \sum_{i=1}^n x_ie_i, \quad y = \sum_{j=1}^n y_ie_i
+        $$
+        Обозначим:
+        $$
+        g_{ij} = (e_ie_j)
+        $$
+        \textbf{Матрицей Грама} называется матрица:
+        $$
+        G = (g_{ij}) = \begin{pmatrix}
+            g_{11} & g_{12} & \cdots & g_{1n}\\
+            g_{21} & g_{22} & \cdots & g_{2n}\\
+            \vdots & \vdots & \ddots & \vdots\\
+            g_{n1} & g_{n2} & \cdots & g_{nn}
+        \end{pmatrix}
+        $$
+        Скалярное произведение в матричном виде:
+        $$
+        (x, y) = \sum_{i,j=0}^n g_{ij}x_iy_j
+        $$
+        $$
+        (x, y) = X^TGY
+        $$ 
+    \end{defbox}
+    \begin{defbox}
+        Через скалярное произведение определяется \textbf{норма вектора}:
+        $$
+        ||x|| = \sqrt{(x, x)}
+        $$
+        \begin{enumerate}
+            \item $||x|| \ge 0$, $||x|| = 0 \Leftrightarrow x =0$
+            \item $||\alpha x|| = |\alpha|\cdot||x||$
+            \item $||x+y|| \le ||x|| + ||y||$
+        \end{enumerate}
+    \end{defbox}
 
-#=================================== ВОПРОС 15 ========================================================
+    \chapter{Ортонормированный базис. Расстояния и углы.}
+    \begin{defbox}
+        Пусть $V$ -- евклидово пространство. Векторы $e_1\cdots e_n$ называются \textbf{ортогональными}, если:
+        $$
+        (e_i, e_j) = 0, \quad i \ne j
+        $$
+        Приэтом если:
+        $$
+        ||e_i|| = 1
+        $$
+        То система называется \textbf{ортонормированной}
+    \end{defbox}
+    \begin{defbox}
+        Базис $e_1\cdots e_n$ называется ортонормированным, если его векторы образуют ортонормированную систему.
+    \end{defbox}
+    \begin{defbox}
+        \textbf{Метрикой} пространства называется функция, которая каждой паре элементов $x,y$ сопоставляет число из $\mathbb{R}$, удовлетворяющее следующим аксиомам:
+        \begin{enumerate}
+            \item $\rho(x,x) = 0$, $\rho(x,y)=0\Leftrightarrow x = y$
+            \item $\rho(x,y)=\rho(y,x)$
+            \item $\rho(x,y)\le \rho(x,z) + \rho(z,y)$
+            \item $\rho(x,y) \ge 0$
+        \end{enumerate}
+        $$
+        \rho(x, y) = ||x-y||
+        $$
+    \end{defbox}
+
+    \begin{defbox}
+        Для ненулевых векторов $x$ и $y$
+        $$
+        \cos\varphi = \frac{(x,y)}{||x|| \cdot ||y||}
+        $$
+    \end{defbox}
+
+    \chapter{Унитарное пространство.}
+
+    \begin{defbox}
+        Линейное протсранство $U$ над $\mathbb{C}$ называется \textbf{унитарным пространством}, если на нем задано отображение $(\cdot, \cdot):U\times U \rightarrow \mathbb{C}$, обладающее свойствами:
+        \begin{enumerate}
+            \item Эрмитовость: $(x, y) = \overline{(y,x)}$
+            \item Аддитивность: $(x+y,z) = (x,z)+(y,z)$
+            \item Однородность: $(\alpha x, y)=\alpha(x,y)$
+            \item $(x,x)\ge 0$, $(x,x)=0\Leftrightarrow x =0$
+        \end{enumerate}
+    \end{defbox}
 
 	\chapter{Скалярное произведение как билинейная форма. Матрица Грама.}
     \begin{defbox}
