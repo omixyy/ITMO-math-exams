@@ -45,14 +45,19 @@
 \RequirePackage{amssymb,amsmath,amsfonts,latexsym,mathtext} %расширенные наборы  математических символов
 
 \RequirePackage{amsthm}
-\theoremstyle{definition}
+
+% --- УТВЕРЖДЕНИЯ (курсивом) ---
+\theoremstyle{plain} 
 \newtheorem{theorem}{Теорема}
 \newtheorem{proposition}[theorem]{Предложение}
 \newtheorem{corollary}[theorem]{Следствие}
 \newtheorem{lemma}[theorem]{Лемма}
-\newtheorem{definition}[theorem]{Определение}
-\newtheorem{example}[theorem]{Пример}
-\newtheorem{remark}[theorem]{Замечание}
+
+% --- ОПРЕДЕЛЕНИЯ И КОММЕНТАРИИ (прямым шрифтом) ---
+\theoremstyle{definition}
+\newtheorem{definition}{Определение} % Свой счетчик, прямой текст
+\newtheorem{example}{Пример}         % Свой счетчик, прямой текст
+\newtheorem{remark}{Замечание}       % Свой счетчик, прямой текст
 
 \RequirePackage[tableposition=top]{caption}
 \DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}

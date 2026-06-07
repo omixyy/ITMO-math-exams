@@ -1,0 +1,328 @@
+\documentclass[14pt]{extreport}
+\usepackage{graphicx}
+\usepackage{gost}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\PassOptionsToPackage{russian,english}{babel}
+\usepackage[english,russian]{babel}
+% \usepackage{tempora}
+\usepackage{hyperref}
+\linespread{1.3}
+\setlength{\parindent}{1.25cm}
+\usepackage{hyperref}
+
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{longtable}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead{} 
+\fancyfoot[C]{\thepage} 
+
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{amsthm}
+
+\begin{document}
+\thispagestyle{empty}
+	\title{Математический анализ. Экзамен.}
+	\maketitle
+
+	\newpage
+	\tableofcontents
+
+    \newpage
+    \chapter{Понятие первообразной. Свойства первообразной. Неопределенный интеграл. Свойства неопределенного интеграла.}
+
+    \begin{definition}
+        Функция $F(x)$ называется \textbf{первообразной} функции $f(x)$, если $F'(x) = f(x)$
+    \end{definition}
+
+    \begin{theorem}[Общий вид первообразной]
+        Пусть $F_1(x) $ и $F_2(x)$ -- первообразные функции $f(x)$. Тогда $F_1(x) - F_2(x) = C$
+    \end{theorem}
+    \begin{proof}
+        Пусть $H(x) = F_2(x) - F_1(x)$. $H'(x) = f(x) - f(x) = 0$. Докажем, что если $H'(x) = 0$, то $H(X) = const$. Пусть $H(X)$ определена на $[a, b]$, $(a, b) \subset D(f)$. $H(x)$ непрерывна на $[a, b] \Rightarrow H(x)$ непрерывна на $[a_1, b_1] \subset [a, b]$. Тогда применим теорему Лагранжа к $H(x): \exists c \in (a_1, b_1) : H(c) = \frac{H(b_1)-H(a_1)}{b_1-a_1}$. $\forall c \: H'(c)=0 \Rightarrow H(a_1)=H(b_1)\Rightarrow H(x )=const$
+    \end{proof}
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{|c|c|||c|c|}
+        \hline
+        \textbf{Функция} & \textbf{Интеграл} & \textbf{Функция} & \textbf{Интеграл} \\
+        \hline
+        $0$ & $C$ & $\cos x$ & $\sin x + C$ \\
+        \hline
+        $1$ & $x + C$ & $\sin x$ & $-\cos x + C$ \\
+        \hline
+        $x^n \ (n \neq -1)$ & $\frac{x^{n+1}}{n+1} + C$ & $\frac{1}{\cos^2 x}$ & $\operatorname{tg} x + C$ \\
+        \hline
+        $\frac{1}{x}$ & $\ln|x| + C$ & $\frac{1}{\sin^2 x}$ & $-\operatorname{ctg} x + C$ \\
+        \hline
+        $a^x \ (a>0, a\neq 1)$ & $\frac{a^x}{\ln a} + C$ & $\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x + C$ \\
+        \hline
+        $e^x$ & $e^x + C$ & $\frac{1}{1+x^2}$ & $\operatorname{arctg} x + C$ \\
+        \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{definition}
+        Множество всех первообразных функций $f(x)$ нахывается \textbf{неопределенным интегралом} от функции $f$
+        $$
+        F(x) = \int f(x)dx
+        $$
+    \end{definition}
+    \newpage
+    \begin{theorem}
+        Неопределенный интеграл обладает следующими основными свойствами:
+        \begin{enumerate}
+            \item $\int f(x)dx + \int g(x)dx = \int (f(x) + g(x)) dx$
+            \item $\int f(g(x)) g'(x) dx = \int f(g(x)) dg(x) = \int f(t) dt = F(g(x))$
+            \item $\int f(ax+b) dx = \frac{1}{a} F(ax+b)+C$
+            \item $\frac{1}{a}\int f(ax+b) \cdot a dx=\frac{1}{a} \int f(ax+b)(ax+b)'dx=\frac{1}{a}\int f(t) dt = \frac{1}{a}F(t)+C$
+        \end{enumerate}
+    \end{theorem}
+
+    \chapter{Таблица неопределённых интегралов. Непосредственное интегрирование.}
+    \section{Таблица основных неопределённых интегралов}
+
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{|c|c|||c|c|}
+        \hline
+        \textbf{Функция} & \textbf{Интеграл} & \textbf{Функция} & \textbf{Интеграл} \\
+        \hline
+        $0$ & $C$ & $\cos x$ & $\sin x + C$ \\
+        \hline
+        $1$ & $x + C$ & $\sin x$ & $-\cos x + C$ \\
+        \hline
+        $x^n \ (n \neq -1)$ & $\frac{x^{n+1}}{n+1} + C$ & $\frac{1}{\cos^2 x}$ & $\operatorname{tg} x + C$ \\
+        \hline
+        $\frac{1}{x}$ & $\ln|x| + C$ & $\frac{1}{\sin^2 x}$ & $-\operatorname{ctg} x + C$ \\
+        \hline
+        $a^x \ (a>0, a\neq 1)$ & $\frac{a^x}{\ln a} + C$ & $\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x + C$ \\
+        \hline
+        $e^x$ & $e^x + C$ & $\frac{1}{1+x^2}$ & $\operatorname{arctg} x + C$ \\
+        \hline
+        \end{tabular}
+    \end{center}
+
+    \section{Непосредственное интегрирование}
+
+    \begin{definition}
+        \textbf{Непосредственным интегрированием} называется вычисление неопределённого интеграла путём применения таблицы интегралов и свойств неопределённого интеграла без использования специальных методов (замены переменной, интегрирования по частям и др.).
+    \end{definition}
+
+    Основой непосредственного интегрирования являются следующие свойства:
+
+    \begin{theorem}[Линейность неопределённого интеграла]
+    Пусть функции $f(x)$ и $g(x)$ имеют первообразные, а числа
+    $\alpha,\beta\in\mathbb R$. Тогда
+    \[
+    \int \bigl(\alpha f(x)+\beta g(x)\bigr)\,dx
+    =
+    \alpha\int f(x)\,dx+
+    \beta\int g(x)\,dx.
+    \]
+    \end{theorem}
+
+    \begin{proof}
+    Пусть
+    \[
+    F'(x)=f(x), \qquad G'(x)=g(x).
+    \]
+    Тогда
+    \[
+    (\alpha F(x)+\beta G(x))'
+    =
+    \alpha F'(x)+\beta G'(x)
+    =
+    \alpha f(x)+\beta g(x).
+    \]
+    Следовательно,
+    \[
+    \alpha F(x)+\beta G(x)
+    \]
+    является первообразной функции
+    \[
+    \alpha f(x)+\beta g(x),
+    \]
+    откуда
+    \[
+    \int (\alpha f(x)+\beta g(x))\,dx
+    =
+    \alpha\int f(x)\,dx
+    +
+    \beta\int g(x)\,dx.
+    \]
+    \end{proof}
+
+    \chapter{Дифференциал, инвариантность формы дифференциала. Интегрирование методом замены переменной в неопределенном интеграле.}
+
+    Пусть функция $y=f(x)$ дифференцируема в точке $x$.
+
+    \begin{definition}
+    Дифференциалом функции $y=f(x)$ называется главная линейная часть её приращения:
+    \[
+    dy=f'(x)\,dx,
+    \]
+    где $dx=\Delta x$ называется дифференциалом независимой переменной.
+    \end{definition}
+
+    \section{Свойства дифференциала}
+
+Если функции $u(x)$ и $v(x)$ дифференцируемы, то:
+
+\begin{enumerate}
+\item
+\[
+d(C)=0.
+\]
+
+\item
+\[
+d(Cu)=C\,du.
+\]
+
+\item
+\[
+d(u\pm v)=du\pm dv.
+\]
+
+\item
+\[
+d(uv)=u\,dv+v\,du.
+\]
+
+\item
+\[
+d\left(\frac{u}{v}\right)
+=
+\frac{v\,du-u\,dv}{v^2},
+\qquad v\neq0.
+\]
+\end{enumerate}
+
+Все свойства непосредственно следуют из соответствующих правил
+дифференцирования.
+
+\section{Инвариантность формы дифференциала}
+
+\begin{theorem}
+Форма записи первого дифференциала не изменяется при замене независимой
+переменной.
+\end{theorem}
+
+\begin{proof}
+
+Пусть
+
+\[
+y=f(u),
+\qquad
+u=\varphi(x),
+\]
+
+причём обе функции дифференцируемы.
+
+Тогда по правилу дифференцирования сложной функции
+
+\[
+\frac{dy}{dx}
+=
+\frac{dy}{du}\cdot\frac{du}{dx}.
+\]
+
+Умножая на $dx$, получаем
+
+\[
+dy
+=
+\frac{dy}{du}\frac{du}{dx}\,dx.
+\]
+
+Так как
+
+\[
+du=\frac{du}{dx}\,dx,
+\]
+
+то
+
+\[
+dy
+=
+\frac{dy}{du}\,du.
+\]
+
+Следовательно, независимо от того, является ли аргументом функции
+переменная $x$ или промежуточная переменная $u$, дифференциал имеет одну и
+ту же форму:
+
+\[
+dy=f'(u)\,du.
+\]
+
+Теорема доказана.
+\end{proof}
+
+\section{Замена переменной в неопределённом интеграле}
+
+\begin{theorem}[Замена переменной]
+Если $x=\varphi(t)$
+дифференцируема и после подстановки интеграл принимает вид
+\[
+\int f(\varphi(t))\varphi'(t)\,dt,
+\]
+то
+\[
+\int f(x)\,dx
+=
+\int f(\varphi(t))\varphi'(t)\,dt.
+\]
+\end{theorem}
+
+\begin{proof}
+
+Пусть $F'(x)=f(x).$ Тогда
+
+\[
+\frac{d}{dt}F(\varphi(t))
+=
+F'(\varphi(t))\varphi'(t)
+=
+f(\varphi(t))\varphi'(t).
+\]
+
+Следовательно,
+
+\[
+\int f(\varphi(t))\varphi'(t)\,dt
+=
+F(\varphi(t))+C.
+\]
+
+Возвращаясь к переменной $x$:
+
+\[
+F(\varphi(t))
+=
+F(x).
+\]
+
+Поэтому
+
+\[
+\int f(x)\,dx
+=
+F(x)+C.
+\]
+
+Теорема доказана.
+\end{proof}
+\end{document}
