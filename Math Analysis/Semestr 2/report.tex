@@ -3890,11 +3890,11 @@ F(x)=\int_a^x f(t)\,dt
 
 \chapter{Теорема об интегрируемости функций, непрерывных на отрезке.}
 
-    \begin{thbox}
+    \begin{theorem}
         Если функция $f$ непрерывна на отрезке $[a,b]$, то она интегрируема по Риману на $[a,b]$.
-    \end{thbox}
+    \end{theorem}
 
-    \begin{prbox}
+    \begin{proof}
         Напомним критерий Римановой интегрируемости (через суммы Дарбу): функция $f$, ограниченная на $[a,b]$, интегрируема по Риману тогда и только тогда, когда для любого $\varepsilon>0$ существует разбиение
         \[
         P: a = x_0 < x_1 < ... < x_n = b,
@@ -3948,13 +3948,13 @@ F(x)=\int_a^x f(t)\,dt
         \]
         Итак, для любого $\varepsilon>0$ найдётся разбиение $P$, что $U(f,P) - L(f,P) \leq \varepsilon$ (а значит и $<\varepsilon$, если заменить $\varepsilon$ на $\varepsilon/2$).\\
         По критерию Римана это означает, что $f$ интегрируема по Риману на $[a,b]$.
-    \end{prbox}
+    \end{proof}
 
 
 
     \chapter{Теорема о среднем для определенного интеграла.}
 
-    \begin{thbox}
+    \begin{theorem}
         \textbf{(A) Без веса}\\
         Пусть $f \in C[a,b]$. Тогда существует $\xi \in [a,b]$ такое, что
         \[
@@ -3967,9 +3967,9 @@ F(x)=\int_a^x f(t)\,dt
         \int_a^b f(x) g(x)\ dx = f(\xi) \int_a^b g(x)\ dx.
         \]
         (Если $\int_a^b g = 0$, равенство верно при любом $\xi$; иначе $\xi$ находится так, что $f(\xi)$ равно средневзвешенному значению.)
-    \end{thbox}
+    \end{theorem}
 
-    \begin{prbox}
+    \begin{proof}
         \textbf{1) Доказательство (B)}\\
         Так как $f$ непрерывна на $[a,b]$, по теореме Вейерштрасса она достигает минимума и максимума:
         \[
@@ -4015,13 +4015,13 @@ F(x)=\int_a^x f(t)\,dt
         \[
         \int_a^b f(x)\ dx = f(\xi) (b-a).
         \]
-    \end{prbox}
+    \end{proof}
 
 
 
     \chapter{Теорема о производной определенного интеграла с переменным верхним пределом.}
 
-    \begin{thbox}
+    \begin{theorem}
         Пусть $f$ интегрируема по Риману на $[a,b]$. Определим
         \[
         F(x) = \int_a^x f(t)\ dt, \quad x \in [a,b].
@@ -4031,9 +4031,9 @@ F(x)=\int_a^x f(t)\,dt
         F'(x_0 = f(x_0).
         \]
         (В частности, если $f \in C[a,b]$, то $F \in C^1(a,b)$ и $F'(x) = f(x)$ для всех $x \in (a,b)$.)
-    \end{thbox}
+    \end{theorem}
 
-    \begin{prbox}
+    \begin{proof}
         Возьмём $h \neq 0$ так, чтобы $x_0+h \in [a,b]$. Тогда по аддитивности определённого интеграла
         \[
         F(x_0+h) - F(x_0) = \int_a^{x_0+h} f(t)\ dt - \int_a^{x_0} f(t)\ dt = \int_{x_0}^{x_0+h} f(t)\ dt.
@@ -4068,7 +4068,7 @@ F(x)=\int_a^x f(t)\,dt
         \frac{F(x_0+h) - F(x_0)}{h} \xrightarrow[h \rightarrow 0]\ f(x_0),
         \]
         то есть $F$ дифференцируема в $x_0$ и $F'(x_0) = f(x_0)$.
-    \end{prbox}
+    \end{proof}
 
 
 
@@ -4088,7 +4088,7 @@ F(x)=\int_a^x f(t)\,dt
     \]
     (если предел существует и конечен).
 
-    \begin{thbox}
+    \begin{theorem}
         \textbf{Основной критерий для $f \geq 0$: монотонность и ограниченность частичных интегралов}\\
         Положим
         \[
@@ -4099,16 +4099,16 @@ F(x)=\int_a^x f(t)\,dt
         \int_a^{+\infty} f(x)\ dx\ \text{сходится}\ \Leftrightarrow \sup_{A \geq a} F(A) < +\infty.
         \]
         Если $\sup_{A \rightarrow \infty} F(A) = +\infty$, то интеграл расходится (равен $+\infty$).
-    \end{thbox}
-    \begin{prbox}
+    \end{theorem}
+    \begin{proof}
         Пусть $A_2 > A_1 \geq a$. По аддитивности интеграла
         \[
         F(A_2) - F(A_1) = \int_{A_1}^{A_2} f(x)\ dx \geq 0,
         \]
         так как $f \geq 0$. Значит $F$ неубывает . Для неубывающей функции предел при $A \rightarrow \infty$ существует (возможно $+\infty$); он конечен тогда и только тогда, когда функция ограничена сверху.
-    \end{prbox}
+    \end{proof}
 
-    \begin{thbox}
+    \begin{theorem}
         \textbf{Прямой признак сравнения}\\
         Пусть $f,g$ определены на $[a,+\infty)$, интегрируемы на каждом $[a,A]$, и
         \[
@@ -4119,17 +4119,17 @@ F(x)=\int_a^x f(t)\,dt
             \item если $\int_a^{+\infty} g(x)\ dx$ сходится, то $\int_a^{+\infty} f(x)\ dx$ сходится;
             \item если $\int_a^{+\infty} f(x)\ dx$ расходится, то $\int_a^{+\infty} g(x)\ dx$ расходится;
         \end{enumerate}
-    \end{thbox}
-    \begin{prbox}
+    \end{theorem}
+    \begin{proof}
         Для $A \geq A_0$ имеем
         \[
         \int_a^A f = \int_a^{A_0} f + \int_{A_0}^A f \leq \int_a^{A_0} f + \int_{A_0}^A g = C + \int_a^A g,
         \]
         где $C := \int_a^{A_0} f - \int_a^{A_0} g$ – константа. Если $\int_a^\infty g$ сходится, то $\int_a^A g$ ограничены по $A$, значит ограничены и $\int_a^A f$; по критерию из п.1 интеграл $\int_a^\infty f$ сходится.\\
         Пункт 2 получается из пункта 1 по контрапозиции: если бы $\int_a^\infty g$ сходился, то сходился бы и $\int_a^\infty f$.
-    \end{prbox}
+    \end{proof}
 
-    \begin{thbox}
+    \begin{theorem}
         \textbf{Предельный признак сравнения (и эквивалентность)}\\
         Пусть $f,g \geq 0$ при $x \geq A_0$ и существует предел
         \[
@@ -4141,8 +4141,8 @@ F(x)=\int_a^x f(t)\,dt
             \item если $L = 0$ и $\int_a^\infty g$ сходится, то $\int_a^\infty f$ сходится;
             \item если $L = +\infty$ и $\int_a^\infty g$ расходится, то $\int_a^\infty f$ расходится.
         \end{itemize}
-    \end{thbox}
-    \begin{prbox}
+    \end{theorem}
+    \begin{proof}
         \textbf{Случай $0 < L < \infty$}\\
         По определению предела существует $A_1 \geq A_0$ такое, что для всех $x \geq A_1$
         \[
@@ -4153,15 +4153,15 @@ F(x)=\int_a^x f(t)\,dt
         \frac{L}{2} g(x) \leq f(x) \leq 2L g(x) \quad (x \geq A_1).
         \]
         Теперь применяем прямой признак сравнения (п.2) к парам $(f, 2Lg)$ и $(g, \frac{2}{L}f)$ на луче $[A_1,\infty)$. Прибавление конечных интегралов на $[a,A_1]$ на сходимость не влияет, следовательно интегралы $\int_a^\infty f$ и $\int_a^\infty g$ сходятся или расходятся одновременно. Случаи $L = 0$ и $L = +\infty$ доказываются аналогично, получая одностороннее сравнение.
-    \end{prbox}
+    \end{proof}
 
-    \begin{thbox}
+    \begin{theorem}
         \textbf{Эталонный пример: $p$-интеграл на бесконечности}\\
         \[
         \int_1^{+\infty} \frac{dx}{x^p}\ \text{сходится}\ \Leftrightarrow p>1; \quad \text{расходится при}\ p \leq 1.
         \]
-    \end{thbox}
-    \begin{prbox}
+    \end{theorem}
+    \begin{proof}
         Для $p \neq 1$:
         \[
         \int_1^A x^{-p}\ dx = \frac{x^{1-p}}{1-p} \Bigg|_1^A = \frac{A^{1-p} - 1}{1 - p}.
@@ -4172,7 +4172,7 @@ F(x)=\int_a^x f(t)\,dt
         \int_1^A \frac{dx}{x} = \ln A \rightarrow +\infty,
         \]
         интеграл расходится.
-    \end{prbox}
+    \end{proof}
 
 
 	
